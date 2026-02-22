@@ -20,7 +20,6 @@ export const metadata: Metadata = {
   title: "Ag Forum Africa - Connecting Agricultural Innovation Across Africa",
   description:
     "A continental forum connecting farmers, agribusiness leaders, technologists, and policymakers to exchange knowledge and collaborate on agricultural innovation.",
-    generator: 'v0.app'
 }
 
 export default function RootLayout({
