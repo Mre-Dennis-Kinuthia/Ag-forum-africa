@@ -16,16 +16,16 @@ export default function HomePage() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
           <div className="max-w-3xl">
             <h1 className="font-bold text-4xl sm:text-5xl lg:text-6xl mb-6 leading-tight text-balance">
-              Cultivating Africa's Agricultural Future Together
+              African Agriculture Intelligence & Convening Layer
             </h1>
             <p className="text-lg sm:text-xl text-primary-foreground/90 mb-8 leading-relaxed text-pretty">
-              Join thousands of farmers, agribusiness leaders, technologists, and policymakers exchanging knowledge and
-              driving innovation across the continent.
+              A trusted interface between capital, policy, and operators—serving DFIs, sovereign funds, policymakers, and
+              agritech leaders with structured insight into African agriculture.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90" asChild>
-                <Link href="/register">
-                  Join the Community
+                <Link href="/intelligence">
+                  View Intelligence Briefing
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
               </Button>
@@ -35,7 +35,7 @@ export default function HomePage() {
                 className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10"
                 asChild
               >
-                <Link href="/forums">Explore Forums</Link>
+                <Link href="/knowledge-hub">Browse Research Library</Link>
               </Button>
             </div>
           </div>
@@ -48,35 +48,37 @@ export default function HomePage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="text-center">
               <div className="text-3xl sm:text-4xl font-bold text-primary mb-2">15K+</div>
-              <div className="text-sm text-muted-foreground">Active Members</div>
+              <div className="text-sm text-muted-foreground">Data Points Tracked</div>
             </div>
             <div className="text-center">
               <div className="text-3xl sm:text-4xl font-bold text-primary mb-2">2.5K+</div>
-              <div className="text-sm text-muted-foreground">Discussions</div>
+              <div className="text-sm text-muted-foreground">Pages of Research</div>
             </div>
             <div className="text-center">
               <div className="text-3xl sm:text-4xl font-bold text-primary mb-2">500+</div>
-              <div className="text-sm text-muted-foreground">Resources</div>
+              <div className="text-sm text-muted-foreground">Institutional Insights</div>
             </div>
             <div className="text-center">
               <div className="text-3xl sm:text-4xl font-bold text-primary mb-2">48</div>
-              <div className="text-sm text-muted-foreground">Countries</div>
+              <div className="text-sm text-muted-foreground">Countries Covered</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Upcoming Conversations */}
+      {/* Featured Intelligence */}
       <section className="py-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h2 className="text-3xl font-bold text-foreground mb-2">Upcoming Conversations</h2>
-              <p className="text-muted-foreground">Join live discussions with experts and peers</p>
+              <h2 className="text-3xl font-bold text-foreground mb-2">Featured Intelligence</h2>
+              <p className="text-muted-foreground">
+                Curated briefs and dashboards at the intersection of capital, policy, and agricultural systems.
+              </p>
             </div>
             <Button variant="ghost" asChild className="hidden sm:flex">
-              <Link href="/events">
-                View All
+              <Link href="/knowledge-hub">
+                View All Research
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </Button>
@@ -85,25 +87,25 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                title: "Climate-Smart Agriculture in East Africa",
-                date: "March 15, 2024",
-                time: "14:00 GMT",
+                title: "Capital Flows into African Agrifood Systems",
+                date: "Q1 2024",
+                time: "Quarterly Update",
                 participants: 156,
-                category: "Climate",
+                category: "Capital Intelligence",
               },
               {
-                title: "Digital Payment Solutions for Smallholder Farmers",
-                date: "March 18, 2024",
-                time: "10:00 GMT",
+                title: "Regulatory Tracker: Priority Markets",
+                date: "Updated Weekly",
+                time: "Regulatory Calendar",
                 participants: 203,
-                category: "FinTech",
+                category: "Policy & Regulation",
               },
               {
-                title: "Sustainable Irrigation Techniques",
-                date: "March 22, 2024",
-                time: "15:30 GMT",
+                title: "Value Chain Spotlight: Horticulture & High-Value Crops",
+                date: "Annual Outlook",
+                time: "2024 Edition",
                 participants: 89,
-                category: "Water Management",
+                category: "Market Intelligence",
               },
             ].map((event, i) => (
               <Card key={i} className="hover:shadow-lg transition-shadow">
@@ -123,10 +125,10 @@ export default function HomePage() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                       <Users className="w-4 h-4" />
-                      <span>{event.participants} registered</span>
+                      <span>{event.participants} institutional users</span>
                     </div>
                     <Button size="sm" variant="outline">
-                      Register
+                      View Brief
                     </Button>
                   </div>
                 </CardContent>
@@ -136,17 +138,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured Topics */}
+      {/* Recent Policy & Capital Updates */}
       <section className="py-16 bg-muted">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h2 className="text-3xl font-bold text-foreground mb-2">Trending Topics</h2>
-              <p className="text-muted-foreground">Hot discussions happening now</p>
+              <h2 className="text-3xl font-bold text-foreground mb-2">Recent Policy & Capital Updates</h2>
+              <p className="text-muted-foreground">
+                Selected developments shaping investment and regulation across African agriculture.
+              </p>
             </div>
             <Button variant="ghost" asChild className="hidden sm:flex">
-              <Link href="/forums">
-                Browse Forums
+              <Link href="/knowledge-hub">
+                Browse All Updates
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </Button>
@@ -155,39 +159,39 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 gap-6">
             {[
               {
-                title: "Best practices for organic pest control in tropical climates",
+                title: "Kenya announces new blended finance window for climate-smart agriculture",
                 author: "Amara Okafor",
                 avatar: "AO",
                 replies: 47,
                 views: 1203,
-                category: "Crop Management",
+                category: "Policy & Capital",
                 trending: true,
               },
               {
-                title: "Securing funding for agritech startups in West Africa",
+                title: "West African agritech fund closes first USD 150M vehicle",
                 author: "Kwame Mensah",
                 avatar: "KM",
                 replies: 89,
                 views: 2456,
-                category: "Agribusiness",
+                category: "Capital Markets",
                 trending: true,
               },
               {
-                title: "Implementing blockchain for supply chain transparency",
+                title: "New traceability standard adopted for horticulture exports",
                 author: "Fatima Hassan",
                 avatar: "FH",
                 replies: 34,
                 views: 987,
-                category: "Technology",
+                category: "Trade & Standards",
                 trending: false,
               },
               {
-                title: "Policy recommendations for youth engagement in agriculture",
+                title: "Youth employment incentives extended in key value chains",
                 author: "Thabo Ndlovu",
                 avatar: "TN",
                 replies: 62,
                 views: 1567,
-                category: "Policy",
+                category: "Labour & Inclusion",
                 trending: false,
               },
             ].map((topic, i) => (
@@ -234,13 +238,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Success Stories Preview */}
+      {/* Case Studies Preview */}
       <section className="py-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h2 className="text-3xl font-bold text-foreground mb-2">Success Stories</h2>
-              <p className="text-muted-foreground">Real impact from our community members</p>
+              <h2 className="text-3xl font-bold text-foreground mb-2">Case Studies</h2>
+              <p className="text-muted-foreground">
+                Evidence of how capital, policy, and operators collaborate to shift outcomes on the ground.
+              </p>
             </div>
             <Button variant="ghost" asChild className="hidden sm:flex">
               <Link href="/stories">
@@ -253,28 +259,28 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
-                title: "From 2 Acres to 50: A Kenyan Farmer's Journey",
+                title: "Sovereign–DFI partnership unlocks irrigation investment in arid counties",
                 excerpt:
-                  "How community knowledge sharing helped scale a small farm into a thriving agribusiness employing 30 people.",
+                  "Structured blended finance, backed by policy reform, enabled large-scale irrigation with measurable livelihood gains.",
                 image: "/kenyan-farmer-in-field-success.jpg",
-                author: "Grace Wanjiku",
-                category: "Scaling",
+                author: "Ag Forum Africa Case Study",
+                category: "Capital & Infrastructure",
               },
               {
-                title: "Solar-Powered Irrigation Transforms Nigerian Village",
+                title: "Solar-powered cold chain expansion improves export reliability",
                 excerpt:
-                  "A tech solution discovered through forum discussions brings year-round farming to drought-prone region.",
+                  "Targeted investment anchored in data on post-harvest loss and export volatility improved resilience in key value chains.",
                 image: "/solar-irrigation-system-africa.jpg",
-                author: "Ibrahim Yusuf",
-                category: "Technology",
+                author: "Ag Forum Africa Case Study",
+                category: "Resilience & Trade",
               },
               {
-                title: "Youth Cooperative Revitalizes Cocoa Production",
+                title: "Youth-led cooperatives professionalise cocoa production",
                 excerpt:
-                  "Young farmers in Ghana use modern techniques learned from the platform to triple cocoa yields.",
+                  "Programmatic support and tailored financing help youth cooperatives adopt higher-value practices and governance.",
                 image: "/young-african-farmers-cocoa-harvest.jpg",
-                author: "Ama Boateng",
-                category: "Youth",
+                author: "Ag Forum Africa Case Study",
+                category: "Inclusion & Productivity",
               },
             ].map((story, i) => (
               <Card key={i} className="overflow-hidden hover:shadow-lg transition-shadow">

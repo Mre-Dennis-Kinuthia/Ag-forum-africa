@@ -24,18 +24,18 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/forums" className="hover:text-secondary transition-colors">
-                  Forums
-                </Link>
-              </li>
-              <li>
-                <Link href="/events" className="hover:text-secondary transition-colors">
-                  Events
+                <Link href="/intelligence" className="hover:text-secondary transition-colors">
+                  Intelligence
                 </Link>
               </li>
               <li>
                 <Link href="/knowledge-hub" className="hover:text-secondary transition-colors">
-                  Knowledge Hub
+                  Research Library
+                </Link>
+              </li>
+              <li>
+                <Link href="/events" className="hover:text-secondary transition-colors">
+                  Convening
                 </Link>
               </li>
             </ul>

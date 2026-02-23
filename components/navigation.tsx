@@ -26,17 +26,14 @@ export function Navigation() {
             <Link href="/" className="text-foreground hover:text-primary transition-colors font-medium">
               Home
             </Link>
-            <Link href="/forums" className="text-foreground hover:text-primary transition-colors font-medium">
-              Forums
+            <Link href="/intelligence" className="text-foreground hover:text-primary transition-colors font-medium">
+              Intelligence
             </Link>
             <Link href="/knowledge-hub" className="text-foreground hover:text-primary transition-colors font-medium">
-              Knowledge Hub
+              Research
             </Link>
             <Link href="/events" className="text-foreground hover:text-primary transition-colors font-medium">
-              Events
-            </Link>
-            <Link href="/stories" className="text-foreground hover:text-primary transition-colors font-medium">
-              Stories
+              Convening
             </Link>
             <Link href="/community" className="text-foreground hover:text-primary transition-colors font-medium">
               Community
@@ -58,7 +55,7 @@ export function Navigation() {
               <Link href="/login">Sign In</Link>
             </Button>
             <Button asChild className="bg-primary hover:bg-primary/90">
-              <Link href="/register">Join Now</Link>
+              <Link href="/register">Request Access</Link>
             </Button>
           </div>
 
@@ -84,32 +81,25 @@ export function Navigation() {
               Home
             </Link>
             <Link
-              href="/forums"
+              href="/intelligence"
               className="block py-2 text-foreground hover:text-primary font-medium"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Forums
+              Intelligence
             </Link>
             <Link
               href="/knowledge-hub"
               className="block py-2 text-foreground hover:text-primary font-medium"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Knowledge Hub
+              Research
             </Link>
             <Link
               href="/events"
               className="block py-2 text-foreground hover:text-primary font-medium"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Events
-            </Link>
-            <Link
-              href="/stories"
-              className="block py-2 text-foreground hover:text-primary font-medium"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Stories
+              Convening
             </Link>
             <Link
               href="/community"
