@@ -86,27 +86,34 @@ export default function IntelligencePage() {
                 {
                   title: "Capital tracker",
                   description: "Committed and announced capital by country, value chain, and instrument.",
+                  href: "/intelligence/capital-tracker",
                 },
                 {
                   title: "Regulatory tracker",
                   description: "Upcoming and recent policy changes across priority markets.",
+                  href: "#",
                 },
                 {
                   title: "Market signals",
                   description: "Selected indicators on trade, prices, and climate-related risk.",
+                  href: "#",
                 },
               ].map((item, i) => (
-                <Card key={i} className="border-dashed">
-                  <CardHeader>
-                    <CardTitle className="text-base sm:text-lg">{item.title}</CardTitle>
-                    <CardDescription className="text-sm text-pretty">{item.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-xs text-muted-foreground">
-                      UI placeholder — connect to live datasets when the data layer is ready.
-                    </p>
-                  </CardContent>
-                </Card>
+                <Link key={i} href={item.href} className={item.href === "#" ? "pointer-events-none opacity-60" : ""}>
+                  <Card className="border-dashed h-full hover:border-border transition-colors">
+                    <CardHeader>
+                      <CardTitle className="text-base sm:text-lg">{item.title}</CardTitle>
+                      <CardDescription className="text-sm text-pretty">{item.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-xs text-muted-foreground">
+                        {item.href === "#"
+                          ? "UI placeholder — this dashboard will be connected when the data layer is ready."
+                          : "Institutional dashboard — connect to authenticated data when available."}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </Link>
               ))}
             </div>
           </div>
