@@ -1,9 +1,10 @@
 "use client"
 
-import Link from "next/link"
 import { useState } from "react"
 import { Menu, X, Shield } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Logo } from "@/components/logo"
+import Link from "next/link"
 
 export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -14,12 +15,7 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-xl">AF</span>
-            </div>
-            <span className="font-bold text-xl text-primary hidden sm:block">Ag Forum Africa</span>
-          </Link>
+          <Logo />
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6">

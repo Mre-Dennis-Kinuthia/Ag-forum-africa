@@ -4,23 +4,22 @@ import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Separator } from "@/components/ui/separator"
 import Link from "next/link"
-import { ArrowLeft, Download, Share2, Bookmark, Star, FileText, Eye, ThumbsUp, MessageSquare } from "lucide-react"
+import { ArrowLeft, Download, Share2, Bookmark, FileText } from "lucide-react"
 
 const resource = {
   id: 1,
   title: "Complete Guide to Climate-Smart Agriculture in Sub-Saharan Africa",
   description:
     "This comprehensive manual provides detailed guidance on implementing climate-smart agricultural practices across Sub-Saharan Africa. It covers drought-resistant crop varieties, water conservation techniques, soil management, and adaptive farming strategies to help farmers build resilience against climate change.",
-  type: "Guide",
-  category: "Climate",
+  type: "Technical Guide",
+  category: "Climate & Resilience",
   format: "PDF",
   pages: 156,
   fileSize: "12.4 MB",
   downloads: 2847,
   views: 8934,
-  rating: 4.8,
-  reviews: 234,
   author: "African Climate Research Institute",
+  institution: "African Climate Research Institute",
   publishedDate: "January 2024",
   lastUpdated: "February 2024",
   language: "English",
@@ -38,6 +37,7 @@ const resource = {
     "Case Studies from Across Africa",
     "Resources and Further Reading",
   ],
+  tier: "Public",
   relatedResources: [
     {
       id: 2,
@@ -54,39 +54,18 @@ const resource = {
   ],
 }
 
-const reviews = [
-  {
-    id: 1,
-    author: "Amara Okafor",
-    avatar: "AO",
-    rating: 5,
-    date: "March 2024",
-    comment:
-      "Excellent resource! The practical examples and case studies from different African regions make this guide incredibly valuable. I've already implemented several water conservation techniques on my farm.",
-  },
-  {
-    id: 2,
-    author: "Kwame Mensah",
-    avatar: "KM",
-    rating: 5,
-    date: "February 2024",
-    comment:
-      "As an agricultural extension officer, I've been recommending this guide to all the farmers I work with. The section on drought-resistant crops is particularly helpful.",
-  },
-]
-
 export default function ResourceDetailPage({ params }: { params: { id: string } }) {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="bg-muted py-6 border-b border-border">
+      <div className="bg-card py-6 border-b border-border">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             href="/knowledge-hub"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-4"
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-4 text-sm"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to Knowledge Hub
+            Back to Research Library
           </Link>
         </div>
       </div>
@@ -95,58 +74,42 @@ export default function ResourceDetailPage({ params }: { params: { id: string } 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2">
-            {/* Resource Header */}
+            {/* Publication Header */}
             <div className="mb-6">
               <div className="flex items-center gap-2 mb-3 flex-wrap">
-                <Badge variant="outline">{resource.category}</Badge>
-                <Badge variant="secondary">{resource.type}</Badge>
-                {resource.tags.slice(0, 3).map((tag) => (
-                  <Badge key={tag} variant="outline" className="bg-muted">
-                    {tag}
-                  </Badge>
-                ))}
+                <Badge variant="outline">{resource.type}</Badge>
+                <Badge variant="secondary">{resource.category}</Badge>
+                <Badge variant="outline" className="text-xs">
+                  {resource.tier} access
+                </Badge>
               </div>
-              <h1 className="text-3xl font-bold mb-4 text-balance">{resource.title}</h1>
-              <div className="flex items-center gap-4 text-sm text-muted-foreground flex-wrap">
-                <div className="flex items-center gap-1">
-                  <Star className="w-4 h-4 fill-secondary text-secondary" />
-                  <span className="font-semibold">{resource.rating}</span>
-                  <span>({resource.reviews} reviews)</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <Download className="w-4 h-4" />
-                  <span>{resource.downloads.toLocaleString()} downloads</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <Eye className="w-4 h-4" />
-                  <span>{resource.views.toLocaleString()} views</span>
-                </div>
+              <h1 className="text-3xl font-bold mb-3 text-balance">{resource.title}</h1>
+              <div className="space-y-1 text-sm text-muted-foreground mb-4">
+                <p>
+                  {resource.author} • {resource.institution}
+                </p>
+                <p>
+                  Published {resource.publishedDate} • Last updated {resource.lastUpdated} • {resource.language}
+                </p>
+                <p>
+                  {resource.pages} pages • {resource.fileSize} • {resource.downloads.toLocaleString()} downloads
+                </p>
               </div>
             </div>
 
-            {/* Thumbnail */}
-            <div className="aspect-video relative overflow-hidden rounded-lg bg-muted mb-6">
-              <img
-                src={resource.thumbnail || "/placeholder.svg"}
-                alt={resource.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            {/* Description */}
+            {/* Executive summary & structure */}
             <Card className="mb-6">
               <CardHeader>
-                <CardTitle>About This Resource</CardTitle>
+                <CardTitle>Executive summary</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-foreground leading-relaxed">{resource.description}</p>
               </CardContent>
             </Card>
 
-            {/* Table of Contents */}
             <Card className="mb-6">
               <CardHeader>
-                <CardTitle>Table of Contents</CardTitle>
+                <CardTitle>Table of contents</CardTitle>
               </CardHeader>
               <CardContent>
                 <ol className="space-y-2">
@@ -160,51 +123,21 @@ export default function ResourceDetailPage({ params }: { params: { id: string } 
               </CardContent>
             </Card>
 
-            {/* Reviews */}
             <Card>
               <CardHeader>
-                <CardTitle>Reviews ({resource.reviews})</CardTitle>
+                <CardTitle>Methodology & sources</CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {reviews.map((review) => (
-                    <div key={review.id} className="pb-4 border-b border-border last:border-0 last:pb-0">
-                      <div className="flex items-start gap-3">
-                        <Avatar className="w-10 h-10">
-                          <AvatarFallback className="bg-primary text-primary-foreground">
-                            {review.avatar}
-                          </AvatarFallback>
-                        </Avatar>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 mb-1">
-                            <h4 className="font-semibold">{review.author}</h4>
-                            <div className="flex items-center gap-1">
-                              {Array.from({ length: review.rating }).map((_, i) => (
-                                <Star key={i} className="w-4 h-4 fill-secondary text-secondary" />
-                              ))}
-                            </div>
-                          </div>
-                          <p className="text-sm text-muted-foreground mb-2">{review.date}</p>
-                          <p className="text-foreground leading-relaxed">{review.comment}</p>
-                          <div className="flex items-center gap-4 mt-3">
-                            <Button variant="ghost" size="sm" className="h-8 gap-2">
-                              <ThumbsUp className="w-4 h-4" />
-                              Helpful
-                            </Button>
-                            <Button variant="ghost" size="sm" className="h-8 gap-2">
-                              <MessageSquare className="w-4 h-4" />
-                              Reply
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <Separator className="my-4" />
-                <Button variant="outline" className="w-full bg-transparent">
-                  View All Reviews
-                </Button>
+              <CardContent className="space-y-3 text-sm text-muted-foreground">
+                <p>
+                  This publication synthesises evidence from African climate datasets, peer-reviewed literature, and
+                  programmatic experience across multiple countries. It should be read alongside the accompanying data
+                  notes where available.
+                </p>
+                <ul className="list-disc pl-5 space-y-1">
+                  <li>Geographic scope: Sub-Saharan Africa</li>
+                  <li>Time horizon: most recent 5–10 years of available data</li>
+                  <li>Sources: institutional reports, national statistics, and research partners</li>
+                </ul>
               </CardContent>
             </Card>
           </div>
@@ -215,7 +148,7 @@ export default function ResourceDetailPage({ params }: { params: { id: string } 
               {/* Download Card */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Access Resource</CardTitle>
+                  <CardTitle>Access publication</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <Button className="w-full bg-primary hover:bg-primary/90" size="lg">
@@ -236,7 +169,7 @@ export default function ResourceDetailPage({ params }: { params: { id: string } 
               {/* Resource Details */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Resource Details</CardTitle>
+                  <CardTitle>Publication details</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3 text-sm">
                   <div className="flex items-center justify-between">
