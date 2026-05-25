@@ -18,6 +18,7 @@ export function Footer() {
               <li><Link href="/intelligence" className="hover:text-white transition-colors">Overview</Link></li>
               <li><Link href="/intelligence/capital-tracker" className="hover:text-white transition-colors">Capital Tracker</Link></li>
               <li><Link href="/knowledge-hub" className="hover:text-white transition-colors">Publications</Link></li>
+              <li><Link href="/stories" className="hover:text-white transition-colors">Case Studies</Link></li>
             </ul>
           </div>
 
@@ -25,9 +26,8 @@ export function Footer() {
             <h4 className="text-white/30 text-xs uppercase tracking-wider mb-3">Platform</h4>
             <ul className="space-y-2">
               <li><Link href="/events" className="hover:text-white transition-colors">Events</Link></li>
-              <li><Link href="/stories" className="hover:text-white transition-colors">Case Studies</Link></li>
-              <li><Link href="/community" className="hover:text-white transition-colors">Community</Link></li>
               <li><Link href="/forums" className="hover:text-white transition-colors">Forums</Link></li>
+              <li><Link href="/community" className="hover:text-white transition-colors">Community</Link></li>
             </ul>
           </div>
 

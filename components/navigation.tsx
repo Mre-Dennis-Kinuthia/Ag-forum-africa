@@ -18,7 +18,6 @@ export function Navigation() {
       <div className="hidden lg:block bg-brand-navy text-white/70 text-[13px]">
         <div className="container-wide flex items-center justify-between h-8">
           <div className="flex items-center gap-5">
-            <Link href="/about" className="hover:text-white transition-colors">About</Link>
             <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
           </div>
           <div className="flex items-center gap-5">
@@ -59,17 +58,29 @@ export function Navigation() {
               )}
             </div>
 
-            <Link href="/knowledge-hub" className="px-3 py-2 text-sm text-foreground/70 hover:text-foreground transition-colors">
-              Research
-            </Link>
+            <div
+              className="relative"
+              onMouseEnter={() => setOpenDropdown("research")}
+              onMouseLeave={() => setOpenDropdown(null)}
+            >
+              <Link href="/knowledge-hub" className="inline-flex items-center gap-1 px-3 py-2 text-sm text-foreground/70 hover:text-foreground transition-colors">
+                Research <ChevronDown className="h-3 w-3 opacity-40" />
+              </Link>
+              {openDropdown === "research" && (
+                <div className="absolute top-full left-0 pt-1.5 w-64">
+                  <div className="bg-card rounded-lg border border-border shadow-lg py-1.5">
+                    <Link href="/knowledge-hub" className="block px-4 py-2 text-sm hover:bg-muted transition-colors">Publications</Link>
+                    <Link href="/stories" className="block px-4 py-2 text-sm hover:bg-muted transition-colors">Case Studies</Link>
+                  </div>
+                </div>
+              )}
+            </div>
+
             <Link href="/events" className="px-3 py-2 text-sm text-foreground/70 hover:text-foreground transition-colors">
               Events
             </Link>
-            <Link href="/stories" className="px-3 py-2 text-sm text-foreground/70 hover:text-foreground transition-colors">
-              Case Studies
-            </Link>
-            <Link href="/community" className="px-3 py-2 text-sm text-foreground/70 hover:text-foreground transition-colors">
-              Community
+            <Link href="/about" className="px-3 py-2 text-sm text-foreground/70 hover:text-foreground transition-colors">
+              About
             </Link>
           </div>
 
@@ -101,9 +112,8 @@ export function Navigation() {
               { href: "/intelligence", label: "Intelligence" },
               { href: "/intelligence/capital-tracker", label: "Capital Tracker" },
               { href: "/knowledge-hub", label: "Research" },
-              { href: "/events", label: "Events" },
               { href: "/stories", label: "Case Studies" },
-              { href: "/community", label: "Community" },
+              { href: "/events", label: "Events" },
               { href: "/about", label: "About" },
               { href: "/contact", label: "Contact" },
             ].map((item) => (
