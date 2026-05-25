@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Link from "next/link"
-import { Search, FileText, Video, Download, Eye, Star } from "lucide-react"
+import { Search, FileText, Download, ArrowUpRight } from "lucide-react"
 
 const resources = [
   {
@@ -15,15 +15,11 @@ const resources = [
       "Comprehensive manual covering drought-resistant crops, water conservation, and adaptive farming techniques for changing climate conditions.",
     type: "Technical Guide",
     category: "Climate",
-    format: "PDF",
     pages: 156,
     downloads: 2847,
-    rating: 4.8,
-    author: "African Climate Research Institute",
     institution: "African Climate Research Institute",
     published: "January 2024",
     tier: "Public",
-    thumbnail: "/climate-smart-agriculture-guide.jpg",
     featured: true,
   },
   {
@@ -33,15 +29,12 @@ const resources = [
       "12-part video series demonstrating natural pest control methods, companion planting, and integrated pest management strategies.",
     type: "Applied Learning",
     category: "Crop Management",
-    format: "Video",
-    duration: "3h 45m",
+    pages: null,
+    downloads: null,
     views: 15234,
-    rating: 4.9,
-    author: "Dr. Amara Okafor",
     institution: "Independent Expert",
     published: "February 2024",
     tier: "Member",
-    thumbnail: "/organic-pest-management-video.jpg",
     featured: true,
   },
   {
@@ -51,15 +44,11 @@ const resources = [
       "Practical workbook with templates for budgeting, record-keeping, and accessing agricultural loans and grants.",
     type: "Policy Toolkit",
     category: "Agribusiness",
-    format: "PDF",
     pages: 48,
     downloads: 1923,
-    rating: 4.6,
-    author: "Pan-African Agribusiness Network",
     institution: "Pan-African Agribusiness Network",
     published: "December 2023",
     tier: "Public",
-    thumbnail: "/financial-planning-workbook.jpg",
     featured: false,
   },
   {
@@ -69,15 +58,11 @@ const resources = [
       "Overview of IoT sensors, drones, and data analytics tools for modern farming, with case studies from across Africa.",
     type: "Research Report",
     category: "AgriTech",
-    format: "PDF",
     pages: 89,
     downloads: 3421,
-    rating: 4.7,
-    author: "African AgriTech Consortium",
     institution: "African AgriTech Consortium",
     published: "November 2023",
     tier: "Institutional",
-    thumbnail: "/precision-agriculture-tech.jpg",
     featured: true,
   },
   {
@@ -87,15 +72,11 @@ const resources = [
       "Best practices for animal health, breeding, pasture management, and sustainable livestock production systems.",
     type: "Technical Guide",
     category: "Livestock",
-    format: "PDF",
     pages: 124,
     downloads: 1654,
-    rating: 4.5,
-    author: "East African Livestock Institute",
     institution: "East African Livestock Institute",
     published: "October 2023",
     tier: "Public",
-    thumbnail: "/sustainable-livestock-management.jpg",
     featured: false,
   },
   {
@@ -104,190 +85,167 @@ const resources = [
     description: "Practical guide to rainwater harvesting, drip irrigation, and efficient water use in agriculture.",
     type: "Technical Guide",
     category: "Water Management",
-    format: "PDF",
     pages: 72,
     downloads: 2156,
-    rating: 4.8,
-    author: "Water for Agriculture Initiative",
     institution: "Water for Agriculture Initiative",
     published: "September 2023",
     tier: "Member",
-    thumbnail: "/water-harvesting-irrigation.jpg",
     featured: false,
   },
 ]
 
 const categories = [
-  { name: "All Publications", count: 487 },
-  { name: "Capital & Finance", count: 72 },
-  { name: "Policy & Regulation", count: 96 },
-  { name: "Market Intelligence", count: 118 },
-  { name: "Climate & Resilience", count: 89 },
-  { name: "Technology & Innovation", count: 78 },
+  { name: "All Publications", value: "all", count: 487 },
+  { name: "Capital & Finance", value: "capital", count: 72 },
+  { name: "Policy & Regulation", value: "policy", count: 96 },
+  { name: "Market Intelligence", value: "market", count: 118 },
+  { name: "Climate & Resilience", value: "climate", count: 89 },
+  { name: "Technology & Innovation", value: "tech", count: 78 },
 ]
+
+function ResourceCard({ resource }: { resource: typeof resources[number] }) {
+  const tierColors: Record<string, string> = {
+    Public: "bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-400",
+    Member: "bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-400",
+    Institutional: "bg-amber-50 text-amber-700 dark:bg-amber-950 dark:text-amber-400",
+  }
+
+  return (
+    <Link href={`/knowledge-hub/resource/${resource.id}`} className="group block">
+      <Card className="h-full border-border/60 hover:border-border hover:shadow-sm transition-all duration-200">
+        <CardHeader className="pb-3">
+          <div className="flex items-center gap-2 mb-3 flex-wrap">
+            <Badge variant="outline" className="text-xs font-normal">{resource.type}</Badge>
+            <span className={`inline-flex items-center text-[10px] font-medium uppercase tracking-wider px-2 py-0.5 rounded-full ${tierColors[resource.tier]}`}>
+              {resource.tier}
+            </span>
+          </div>
+          <CardTitle className="text-base leading-snug group-hover:text-brand-navy transition-colors">
+            {resource.title}
+          </CardTitle>
+          <CardDescription className="text-sm line-clamp-2 mt-1">{resource.description}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center justify-between text-xs text-muted-foreground">
+            <span>{resource.institution}</span>
+            <div className="flex items-center gap-3">
+              {resource.pages && (
+                <span className="flex items-center gap-1">
+                  <FileText className="h-3 w-3" />
+                  {resource.pages}p
+                </span>
+              )}
+              {resource.downloads && (
+                <span className="flex items-center gap-1">
+                  <Download className="h-3 w-3" />
+                  {resource.downloads.toLocaleString()}
+                </span>
+              )}
+            </div>
+          </div>
+          <div className="text-xs text-muted-foreground/60 mt-1.5">{resource.published}</div>
+        </CardContent>
+      </Card>
+    </Link>
+  )
+}
 
 export default function KnowledgeHubPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="bg-card border-b border-border py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground mb-3">
-            Research Library
-          </p>
-          <h1 className="text-4xl font-bold mb-4">Publications & Briefings</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl text-pretty">
-            Institutional-grade publications at the intersection of capital, policy, and agricultural systems across
-            Africa.
-          </p>
+      <section className="border-b border-border bg-card">
+        <div className="container-wide py-14 lg:py-16">
+          <div className="max-w-2xl">
+            <Badge variant="outline" className="uppercase tracking-[0.15em] text-xs mb-4">
+              Research Library
+            </Badge>
+            <h1 className="text-3xl sm:text-4xl font-bold mb-4">Publications & Briefings</h1>
+            <p className="text-muted-foreground text-[15px] leading-relaxed prose-readable">
+              Institutional-grade publications at the intersection of capital, policy, and agricultural systems across
+              Africa.
+            </p>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="container-wide section-padding">
         {/* Search and Filters */}
-        <div className="flex flex-col lg:flex-row gap-6 mb-8">
-          <div className="flex-1">
-            <div className="relative mb-4">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-              <Input placeholder="Search publications, authors, or institutions..." className="pl-10" />
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <Select defaultValue="all">
-                <SelectTrigger className="w-40">
-                  <SelectValue placeholder="Document type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Types</SelectItem>
-                  <SelectItem value="brief">Policy briefs</SelectItem>
-                  <SelectItem value="report">Research reports</SelectItem>
-                  <SelectItem value="toolkit">Toolkits</SelectItem>
-                </SelectContent>
-              </Select>
-              <Select defaultValue="all">
-                <SelectTrigger className="w-40">
-                  <SelectValue placeholder="Category" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Themes</SelectItem>
-                  <SelectItem value="capital">Capital & Finance</SelectItem>
-                  <SelectItem value="policy">Policy & Regulation</SelectItem>
-                  <SelectItem value="market">Market Intelligence</SelectItem>
-                  <SelectItem value="climate">Climate & Resilience</SelectItem>
-                </SelectContent>
-              </Select>
-              <Select defaultValue="popular">
-                <SelectTrigger className="w-40">
-                  <SelectValue placeholder="Sort by" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="recent">Most recent</SelectItem>
-                  <SelectItem value="popular">Most read</SelectItem>
-                  <SelectItem value="downloads">Most downloaded</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+        <div className="mb-10">
+          <div className="relative mb-4 max-w-xl">
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Input placeholder="Search publications, authors, or institutions..." className="pl-10 h-11" />
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Select defaultValue="all">
+              <SelectTrigger className="w-40 h-9 text-sm">
+                <SelectValue placeholder="Document type" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Types</SelectItem>
+                <SelectItem value="brief">Policy briefs</SelectItem>
+                <SelectItem value="report">Research reports</SelectItem>
+                <SelectItem value="toolkit">Toolkits</SelectItem>
+              </SelectContent>
+            </Select>
+            <Select defaultValue="all">
+              <SelectTrigger className="w-40 h-9 text-sm">
+                <SelectValue placeholder="Category" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Themes</SelectItem>
+                <SelectItem value="capital">Capital & Finance</SelectItem>
+                <SelectItem value="policy">Policy & Regulation</SelectItem>
+                <SelectItem value="market">Market Intelligence</SelectItem>
+                <SelectItem value="climate">Climate & Resilience</SelectItem>
+              </SelectContent>
+            </Select>
+            <Select defaultValue="recent">
+              <SelectTrigger className="w-40 h-9 text-sm">
+                <SelectValue placeholder="Sort by" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="recent">Most recent</SelectItem>
+                <SelectItem value="popular">Most read</SelectItem>
+                <SelectItem value="downloads">Most downloaded</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </div>
 
-        {/* Featured Publications */}
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-1">Featured publications</h2>
-          <p className="text-sm text-muted-foreground mb-4">
+        {/* Featured */}
+        <div className="mb-12">
+          <h2 className="text-xl font-semibold mb-1">Featured publications</h2>
+          <p className="text-sm text-muted-foreground mb-5">
             Selected work most relevant to current capital and policy questions.
           </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {resources
-              .filter((r) => r.featured)
-              .map((resource) => (
-                <Card key={resource.id} className="hover:shadow-sm transition-shadow">
-                  <CardHeader>
-                    <div className="flex items-center gap-2 mb-2 flex-wrap">
-                      <Badge variant="outline">{resource.type}</Badge>
-                      <Badge variant="secondary">{resource.category}</Badge>
-                      <Badge variant="outline" className="ml-auto text-xs">
-                        {resource.tier} access
-                      </Badge>
-                    </div>
-                    <CardTitle className="text-lg leading-tight text-balance">{resource.title}</CardTitle>
-                    <CardDescription className="text-sm text-pretty line-clamp-3">
-                      {resource.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center justify-between text-xs text-muted-foreground mb-3">
-                      <span>
-                        {resource.institution} • {resource.published}
-                      </span>
-                      <div className="flex items-center gap-2">
-                        <div className="flex items-center gap-1">
-                          <FileText className="w-3 h-3" />
-                          <span>{resource.pages} pages</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Download className="w-3 h-3" />
-                          <span>{resource.downloads?.toLocaleString()}</span>
-                        </div>
-                      </div>
-                    </div>
-                    <Button variant="outline" className="w-full bg-transparent" asChild>
-                      <Link href={`/knowledge-hub/resource/${resource.id}`}>Open publication</Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {resources.filter((r) => r.featured).map((resource) => (
+              <ResourceCard key={resource.id} resource={resource} />
+            ))}
           </div>
         </div>
 
         {/* All Publications */}
         <div>
-          <h2 className="text-2xl font-bold mb-4">Browse all publications</h2>
+          <h2 className="text-xl font-semibold mb-5">Browse all publications</h2>
           <Tabs defaultValue="all" className="w-full">
-            <TabsList className="w-full justify-start overflow-x-auto flex-wrap h-auto">
+            <TabsList className="w-full justify-start overflow-x-auto flex-wrap h-auto gap-1 bg-transparent p-0 mb-6">
               {categories.map((cat) => (
-                <TabsTrigger key={cat.name} value={cat.name.toLowerCase().replace(" ", "-")}>
-                  {cat.name} ({cat.count})
+                <TabsTrigger
+                  key={cat.value}
+                  value={cat.value}
+                  className="rounded-full px-4 py-1.5 text-sm data-[state=active]:bg-foreground data-[state=active]:text-background"
+                >
+                  {cat.name}
+                  <span className="ml-1.5 text-xs opacity-50">{cat.count}</span>
                 </TabsTrigger>
               ))}
             </TabsList>
-            <TabsContent value="all" className="mt-6">
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <TabsContent value="all" className="mt-0">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {resources.map((resource) => (
-                  <Card key={resource.id} className="hover:shadow-sm transition-shadow">
-                    <CardHeader>
-                      <div className="flex items-center gap-2 mb-2 flex-wrap">
-                        <Badge variant="outline">{resource.type}</Badge>
-                        <Badge variant="secondary">{resource.category}</Badge>
-                        <Badge variant="outline" className="ml-auto text-xs">
-                          {resource.tier} access
-                        </Badge>
-                      </div>
-                      <CardTitle className="text-lg leading-tight text-balance">{resource.title}</CardTitle>
-                      <CardDescription className="line-clamp-2 text-pretty">{resource.description}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="flex flex-col gap-2 text-xs text-muted-foreground mb-3">
-                        <span>
-                          {resource.author} • {resource.institution}
-                        </span>
-                        <div className="flex items-center justify-between">
-                          <span>{resource.published}</span>
-                          <div className="flex items-center gap-2">
-                            <div className="flex items-center gap-1">
-                              <FileText className="w-3 h-3" />
-                              <span>{resource.pages} pages</span>
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <Download className="w-3 h-3" />
-                              <span>{resource.downloads?.toLocaleString()}</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <Button variant="outline" className="w-full bg-transparent" asChild>
-                        <Link href={`/knowledge-hub/resource/${resource.id}`}>Open publication</Link>
-                      </Button>
-                    </CardContent>
-                  </Card>
+                  <ResourceCard key={resource.id} resource={resource} />
                 ))}
               </div>
             </TabsContent>

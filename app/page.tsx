@@ -1,386 +1,386 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import Link from "next/link"
-import { ArrowRight, Users, BookOpen, Calendar, MessageSquare, TrendingUp, Sprout, Globe } from "lucide-react"
+import Image from "next/image"
+import { ArrowRight, ArrowUpRight, BarChart3, FileText, Calendar, Users, TrendingUp } from "lucide-react"
+
+const featuredBriefings = [
+  {
+    title: "Capital Flows into African Agrifood Systems",
+    period: "Q1 2024 · Quarterly Update",
+    category: "Capital Intelligence",
+    href: "/intelligence/capital-tracker",
+  },
+  {
+    title: "Regulatory Horizon Scan: Priority Markets",
+    period: "Updated Weekly",
+    category: "Policy & Regulation",
+    href: "/knowledge-hub",
+  },
+  {
+    title: "Value Chain Spotlight: Horticulture & High-Value Crops",
+    period: "Annual Outlook · 2024 Edition",
+    category: "Market Intelligence",
+    href: "/knowledge-hub",
+  },
+]
+
+const latestUpdates = [
+  {
+    title: "Kenya announces new blended finance window for climate-smart agriculture",
+    category: "Policy & Capital",
+    date: "22 May 2026",
+    href: "/forums/topic/0",
+  },
+  {
+    title: "West African agritech fund closes first USD 150M vehicle",
+    category: "Capital Markets",
+    date: "18 May 2026",
+    href: "/forums/topic/1",
+  },
+  {
+    title: "New traceability standard adopted for horticulture exports",
+    category: "Trade & Standards",
+    date: "12 May 2026",
+    href: "/forums/topic/2",
+  },
+  {
+    title: "Youth employment incentives extended in key value chains",
+    category: "Labour & Inclusion",
+    date: "8 May 2026",
+    href: "/forums/topic/3",
+  },
+]
+
+const caseStudies = [
+  {
+    title: "Sovereign–DFI partnership unlocks irrigation investment in arid counties",
+    excerpt:
+      "Structured blended finance, backed by policy reform, enabled large-scale irrigation with measurable livelihood gains.",
+    image: "/kenyan-farmer-in-field-success.jpg",
+    category: "Capital & Infrastructure",
+    href: "/stories/0",
+  },
+  {
+    title: "Solar-powered cold chain expansion improves export reliability",
+    excerpt:
+      "Targeted investment anchored in data on post-harvest loss and export volatility improved resilience in key value chains.",
+    image: "/solar-irrigation-system-africa.jpg",
+    category: "Resilience & Trade",
+    href: "/stories/1",
+  },
+  {
+    title: "Youth-led cooperatives professionalise cocoa production",
+    excerpt:
+      "Programmatic support and tailored financing help youth cooperatives adopt higher-value practices and governance.",
+    image: "/young-african-farmers-cocoa-harvest.jpg",
+    category: "Inclusion & Productivity",
+    href: "/stories/2",
+  },
+]
+
+const partners = [
+  "African Development Bank",
+  "CGIAR",
+  "African Union",
+  "World Bank",
+  "GIZ",
+  "USAID",
+  "IFAD",
+  "Bill & Melinda Gates Foundation",
+]
 
 export default function HomePage() {
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="relative bg-primary text-primary-foreground overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <img src="/african-farmland-aerial-view-green-fields.jpg" alt="" className="w-full h-full object-cover" />
-        </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
-          <div className="max-w-3xl">
-            <h1 className="font-bold text-4xl sm:text-5xl lg:text-6xl mb-6 leading-tight text-balance">
-              African Agriculture Intelligence & Convening Layer
+      {/* ── Hero ── */}
+      <section className="relative isolate overflow-hidden bg-brand-navy">
+        <Image
+          src="/african-farmland-aerial-view-green-fields.jpg"
+          alt=""
+          fill
+          priority
+          className="object-cover opacity-20 mix-blend-luminosity"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-navy via-brand-navy/95 to-brand-navy/70" />
+
+        <div className="relative container-wide py-20 lg:py-28">
+          <div className="max-w-2xl">
+            <Badge className="bg-white/10 text-white/90 border-white/20 backdrop-blur-sm mb-6 text-xs font-medium tracking-wide uppercase">
+              Institutional Intelligence
+            </Badge>
+            <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold text-white leading-[1.1] mb-6">
+              Intelligence for
+              <br />
+              African Agriculture
             </h1>
-            <p className="text-lg sm:text-xl text-primary-foreground/90 mb-8 leading-relaxed text-pretty">
-              A trusted interface between capital, policy, and operators—serving DFIs, sovereign funds, policymakers, and
-              agritech leaders with structured insight into African agriculture.
+            <p className="text-lg text-white/75 leading-relaxed mb-10 prose-readable">
+              Data, research, and convening for the institutions shaping Africa's agrifood future — serving DFIs,
+              sovereign funds, policymakers, and operators.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90" asChild>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button
+                size="lg"
+                asChild
+                className="bg-brand-gold hover:bg-brand-gold/90 text-brand-navy font-semibold rounded-full px-7"
+              >
                 <Link href="/intelligence">
-                  View Intelligence Briefing
-                  <ArrowRight className="ml-2 w-5 h-5" />
+                  Explore Intelligence
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10"
                 asChild
+                className="bg-transparent border-white/30 text-white hover:bg-white/10 rounded-full px-7"
               >
-                <Link href="/knowledge-hub">Browse Research Library</Link>
+                <Link href="/knowledge-hub">Browse Research</Link>
               </Button>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Stats Section */}
-      <section className="bg-muted py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold text-primary mb-2">15K+</div>
-              <div className="text-sm text-muted-foreground">Data Points Tracked</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold text-primary mb-2">2.5K+</div>
-              <div className="text-sm text-muted-foreground">Pages of Research</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold text-primary mb-2">500+</div>
-              <div className="text-sm text-muted-foreground">Institutional Insights</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold text-primary mb-2">48</div>
-              <div className="text-sm text-muted-foreground">Countries Covered</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Intelligence */}
-      <section className="py-16 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <h2 className="text-3xl font-bold text-foreground mb-2">Featured Intelligence</h2>
-              <p className="text-muted-foreground">
-                Curated briefs and dashboards at the intersection of capital, policy, and agricultural systems.
-              </p>
-            </div>
-            <Button variant="ghost" asChild className="hidden sm:flex">
-              <Link href="/knowledge-hub">
-                View All Research
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Link>
-            </Button>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Hero stats */}
+          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-10 border-t border-white/10 pt-10">
             {[
-              {
-                title: "Capital Flows into African Agrifood Systems",
-                date: "Q1 2024",
-                time: "Quarterly Update",
-                participants: 156,
-                category: "Capital Intelligence",
-              },
-              {
-                title: "Regulatory Tracker: Priority Markets",
-                date: "Updated Weekly",
-                time: "Regulatory Calendar",
-                participants: 203,
-                category: "Policy & Regulation",
-              },
-              {
-                title: "Value Chain Spotlight: Horticulture & High-Value Crops",
-                date: "Annual Outlook",
-                time: "2024 Edition",
-                participants: 89,
-                category: "Market Intelligence",
-              },
-            ].map((event, i) => (
-              <Card key={i} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex items-start justify-between mb-2">
-                    <Badge variant="secondary" className="bg-accent text-accent-foreground">
-                      {event.category}
-                    </Badge>
-                    <Calendar className="w-4 h-4 text-muted-foreground" />
-                  </div>
-                  <CardTitle className="text-lg leading-tight text-balance">{event.title}</CardTitle>
-                  <CardDescription>
-                    {event.date} • {event.time}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Users className="w-4 h-4" />
-                      <span>{event.participants} institutional users</span>
-                    </div>
-                    <Button size="sm" variant="outline">
-                      View Brief
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+              { value: "$12B+", label: "Capital tracked" },
+              { value: "320+", label: "Institutions monitored" },
+              { value: "86", label: "Policy briefs published" },
+              { value: "48", label: "Countries covered" },
+            ].map((stat) => (
+              <div key={stat.label}>
+                <div className="text-2xl sm:text-3xl font-bold text-white mb-1">{stat.value}</div>
+                <div className="text-sm text-white/50">{stat.label}</div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Recent Policy & Capital Updates */}
-      <section className="py-16 bg-muted">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
+      {/* ── Featured Intelligence ── */}
+      <section className="section-padding bg-background">
+        <div className="container-wide">
+          <div className="flex items-end justify-between gap-4 mb-10">
             <div>
-              <h2 className="text-3xl font-bold text-foreground mb-2">Recent Policy & Capital Updates</h2>
-              <p className="text-muted-foreground">
-                Selected developments shaping investment and regulation across African agriculture.
-              </p>
+              <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground mb-2">Intelligence</p>
+              <h2 className="text-2xl sm:text-3xl font-bold">Featured Briefings</h2>
             </div>
-            <Button variant="ghost" asChild className="hidden sm:flex">
-              <Link href="/knowledge-hub">
-                Browse All Updates
-                <ArrowRight className="ml-2 w-4 h-4" />
+            <Button variant="ghost" size="sm" asChild className="hidden sm:inline-flex text-muted-foreground">
+              <Link href="/intelligence">
+                View all
+                <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
               </Link>
             </Button>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {[
-              {
-                title: "Kenya announces new blended finance window for climate-smart agriculture",
-                author: "Amara Okafor",
-                avatar: "AO",
-                replies: 47,
-                views: 1203,
-                category: "Policy & Capital",
-                trending: true,
-              },
-              {
-                title: "West African agritech fund closes first USD 150M vehicle",
-                author: "Kwame Mensah",
-                avatar: "KM",
-                replies: 89,
-                views: 2456,
-                category: "Capital Markets",
-                trending: true,
-              },
-              {
-                title: "New traceability standard adopted for horticulture exports",
-                author: "Fatima Hassan",
-                avatar: "FH",
-                replies: 34,
-                views: 987,
-                category: "Trade & Standards",
-                trending: false,
-              },
-              {
-                title: "Youth employment incentives extended in key value chains",
-                author: "Thabo Ndlovu",
-                avatar: "TN",
-                replies: 62,
-                views: 1567,
-                category: "Labour & Inclusion",
-                trending: false,
-              },
-            ].map((topic, i) => (
-              <Card key={i} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex items-start gap-3">
-                    <Avatar className="w-10 h-10">
-                      <AvatarFallback className="bg-primary text-primary-foreground">{topic.avatar}</AvatarFallback>
-                    </Avatar>
+          <div className="grid lg:grid-cols-3 gap-5">
+            {featuredBriefings.map((item, i) => (
+              <Link key={i} href={item.href} className="group">
+                <Card className="h-full border-border/60 hover:border-border transition-all duration-200 hover:shadow-sm">
+                  <CardHeader className="pb-3">
+                    <div className="flex items-center justify-between mb-3">
+                      <Badge variant="outline" className="text-xs font-normal">
+                        {item.category}
+                      </Badge>
+                      <ArrowUpRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <CardTitle className="text-base sm:text-lg leading-snug group-hover:text-brand-navy transition-colors">
+                      {item.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">{item.period}</p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Latest Updates + Data Highlight ── */}
+      <section className="section-padding bg-muted/50">
+        <div className="container-wide">
+          <div className="grid lg:grid-cols-[1fr,400px] gap-10 lg:gap-14">
+            {/* Updates feed */}
+            <div>
+              <div className="flex items-end justify-between gap-4 mb-8">
+                <div>
+                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground mb-2">Latest</p>
+                  <h2 className="text-2xl sm:text-3xl font-bold">Policy & Capital Updates</h2>
+                </div>
+                <Button variant="ghost" size="sm" asChild className="hidden sm:inline-flex text-muted-foreground">
+                  <Link href="/forums">
+                    All updates
+                    <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                  </Link>
+                </Button>
+              </div>
+
+              <div className="space-y-0 divide-y divide-border">
+                {latestUpdates.map((item, i) => (
+                  <Link
+                    key={i}
+                    href={item.href}
+                    className="group flex items-start justify-between gap-4 py-5 first:pt-0"
+                  >
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Badge variant="outline">{topic.category}</Badge>
-                        {topic.trending && (
-                          <Badge className="bg-secondary text-secondary-foreground">
-                            <TrendingUp className="w-3 h-3 mr-1" />
-                            Trending
-                          </Badge>
-                        )}
+                      <p className="text-[15px] font-medium text-foreground leading-snug group-hover:text-brand-navy transition-colors mb-1.5">
+                        {item.title}
+                      </p>
+                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                        <span className="font-medium">{item.category}</span>
+                        <span className="text-border">·</span>
+                        <span>{item.date}</span>
                       </div>
-                      <CardTitle className="text-base leading-tight mb-1 text-balance">
-                        <Link href={`/forums/topic/${i}`} className="hover:text-primary transition-colors">
-                          {topic.title}
-                        </Link>
-                      </CardTitle>
-                      <CardDescription className="text-sm">by {topic.author}</CardDescription>
                     </div>
+                    <ArrowUpRight className="h-4 w-4 mt-1 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Data highlight */}
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground mb-2">Data Highlight</p>
+              <Card className="border-border/60">
+                <CardHeader className="pb-2">
+                  <div className="flex items-center gap-2 mb-2">
+                    <BarChart3 className="h-4 w-4 text-brand-teal" />
+                    <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">Capital Tracker</p>
                   </div>
+                  <CardTitle className="text-lg">Capital flows into African agrifood systems</CardTitle>
+                  <CardDescription className="text-sm">Q1 2024 · Regional overview</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-1">
-                      <MessageSquare className="w-4 h-4" />
-                      <span>{topic.replies} replies</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Users className="w-4 h-4" />
-                      <span>{topic.views.toLocaleString()} views</span>
-                    </div>
+                  {/* Simplified bar chart visualization */}
+                  <div className="space-y-3 mb-6">
+                    {[
+                      { region: "West Africa", value: 3.4, max: 4.6 },
+                      { region: "East Africa", value: 2.8, max: 4.6 },
+                      { region: "Southern Africa", value: 2.1, max: 4.6 },
+                      { region: "Central Africa", value: 1.2, max: 4.6 },
+                      { region: "North Africa", value: 1.0, max: 4.6 },
+                    ].map((item) => (
+                      <div key={item.region}>
+                        <div className="flex items-center justify-between text-xs mb-1">
+                          <span className="text-muted-foreground">{item.region}</span>
+                          <span className="font-medium">${item.value}B</span>
+                        </div>
+                        <div className="h-2 bg-muted rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-brand-navy rounded-full"
+                            style={{ width: `${(item.value / item.max) * 100}%` }}
+                          />
+                        </div>
+                      </div>
+                    ))}
                   </div>
+                  <Button variant="outline" size="sm" asChild className="w-full">
+                    <Link href="/intelligence/capital-tracker">
+                      Open full dashboard
+                      <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                    </Link>
+                  </Button>
                 </CardContent>
               </Card>
-            ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Case Studies Preview */}
-      <section className="py-16 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
+      {/* ── Case Studies ── */}
+      <section className="section-padding bg-background">
+        <div className="container-wide">
+          <div className="flex items-end justify-between gap-4 mb-10">
             <div>
-              <h2 className="text-3xl font-bold text-foreground mb-2">Case Studies</h2>
-              <p className="text-muted-foreground">
-                Evidence of how capital, policy, and operators collaborate to shift outcomes on the ground.
+              <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground mb-2">Evidence</p>
+              <h2 className="text-2xl sm:text-3xl font-bold">Case Studies</h2>
+              <p className="text-muted-foreground mt-2 prose-readable">
+                How capital, policy, and operators collaborate to shift outcomes on the ground.
               </p>
             </div>
-            <Button variant="ghost" asChild className="hidden sm:flex">
+            <Button variant="ghost" size="sm" asChild className="hidden sm:inline-flex text-muted-foreground">
               <Link href="/stories">
-                Read More
-                <ArrowRight className="ml-2 w-4 h-4" />
+                All case studies
+                <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
               </Link>
             </Button>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                title: "Sovereign–DFI partnership unlocks irrigation investment in arid counties",
-                excerpt:
-                  "Structured blended finance, backed by policy reform, enabled large-scale irrigation with measurable livelihood gains.",
-                image: "/kenyan-farmer-in-field-success.jpg",
-                author: "Ag Forum Africa Case Study",
-                category: "Capital & Infrastructure",
-              },
-              {
-                title: "Solar-powered cold chain expansion improves export reliability",
-                excerpt:
-                  "Targeted investment anchored in data on post-harvest loss and export volatility improved resilience in key value chains.",
-                image: "/solar-irrigation-system-africa.jpg",
-                author: "Ag Forum Africa Case Study",
-                category: "Resilience & Trade",
-              },
-              {
-                title: "Youth-led cooperatives professionalise cocoa production",
-                excerpt:
-                  "Programmatic support and tailored financing help youth cooperatives adopt higher-value practices and governance.",
-                image: "/young-african-farmers-cocoa-harvest.jpg",
-                author: "Ag Forum Africa Case Study",
-                category: "Inclusion & Productivity",
-              },
-            ].map((story, i) => (
-              <Card key={i} className="overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="aspect-video relative overflow-hidden">
-                  <img
-                    src={story.image || "/placeholder.svg"}
-                    alt={story.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <CardHeader>
-                  <Badge variant="secondary" className="w-fit mb-2">
-                    {story.category}
-                  </Badge>
-                  <CardTitle className="text-lg leading-tight text-balance">{story.title}</CardTitle>
-                  <CardDescription className="line-clamp-2 text-pretty">{story.excerpt}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground">by {story.author}</span>
-                    <Button variant="ghost" size="sm" asChild>
-                      <Link href={`/stories/${i}`}>Read More</Link>
-                    </Button>
+            {caseStudies.map((story, i) => (
+              <Link key={i} href={story.href} className="group">
+                <Card className="overflow-hidden h-full border-border/60 hover:shadow-sm transition-all duration-200">
+                  <div className="aspect-[16/10] relative overflow-hidden">
+                    <Image
+                      src={story.image}
+                      alt={story.title}
+                      fill
+                      className="object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                    <Badge className="absolute bottom-3 left-3 bg-white/90 text-foreground text-xs backdrop-blur-sm">
+                      {story.category}
+                    </Badge>
                   </div>
-                </CardContent>
-              </Card>
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-base leading-snug group-hover:text-brand-navy transition-colors">
+                      {story.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground line-clamp-2">{story.excerpt}</p>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-16 bg-muted">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Why Join Ag Forum Africa?</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-pretty">
-              Connect with a vibrant community dedicated to transforming African agriculture through collaboration and
-              innovation
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                icon: MessageSquare,
-                title: "Expert Forums",
-                description: "Engage in discussions with agricultural experts and peers across Africa",
-              },
-              {
-                icon: BookOpen,
-                title: "Knowledge Hub",
-                description: "Access research, guides, and best practices for modern farming",
-              },
-              {
-                icon: Calendar,
-                title: "Live Events",
-                description: "Join webinars, roundtables, and virtual conferences",
-              },
-              {
-                icon: Globe,
-                title: "Pan-African Network",
-                description: "Connect with stakeholders from 48+ countries across the continent",
-              },
-            ].map((feature, i) => (
-              <Card key={i} className="text-center hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                    <feature.icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <CardTitle className="text-lg">{feature.title}</CardTitle>
-                  <CardDescription className="text-pretty">{feature.description}</CardDescription>
-                </CardHeader>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 bg-primary text-primary-foreground">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Sprout className="w-16 h-16 mx-auto mb-6 text-secondary" />
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-balance">Ready to Grow With Us?</h2>
-          <p className="text-lg text-primary-foreground/90 mb-8 text-pretty">
-            Join thousands of agricultural innovators shaping the future of farming in Africa
+      {/* ── Partners / Trust signals ── */}
+      <section className="section-padding-sm bg-muted/50 border-y border-border">
+        <div className="container-wide">
+          <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground text-center mb-8">
+            Trusted by institutions shaping African agriculture
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/90" asChild>
-              <Link href="/register">Create Free Account</Link>
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10"
-              asChild
-            >
-              <Link href="/about">Learn More</Link>
+          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+            {partners.map((name) => (
+              <span
+                key={name}
+                className="text-sm font-medium text-muted-foreground/60 hover:text-muted-foreground transition-colors"
+              >
+                {name}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Newsletter / CTA ── */}
+      <section className="section-padding bg-brand-navy text-white">
+        <div className="container-narrow text-center">
+          <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/50 mb-4">Stay informed</p>
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+            Get the Agforum briefing
+          </h2>
+          <p className="text-white/60 mb-8 max-w-lg mx-auto">
+            Weekly intelligence on capital flows, policy shifts, and market signals across African agriculture — delivered
+            to your inbox.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <input
+              type="email"
+              placeholder="you@institution.org"
+              className="flex-1 h-11 rounded-full border border-white/20 bg-white/5 px-5 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-brand-gold/50"
+            />
+            <Button className="bg-brand-gold hover:bg-brand-gold/90 text-brand-navy font-semibold rounded-full px-7 h-11">
+              Subscribe
             </Button>
           </div>
+          <p className="text-xs text-white/30 mt-4">Free weekly digest. Unsubscribe anytime.</p>
         </div>
       </section>
     </div>

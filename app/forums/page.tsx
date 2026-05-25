@@ -4,201 +4,118 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import Link from "next/link"
-import { Search, MessageSquare, Users, Pin } from "lucide-react"
+import { Search, MessageSquare, Users, Pin, ArrowUpRight } from "lucide-react"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Community Forums",
+}
 
 const categories = [
-  {
-    id: "crop-management",
-    name: "Crop Management",
-    description: "Discuss planting, harvesting, pest control, and crop optimization",
-    topics: 342,
-    posts: 2847,
-    icon: "🌾",
-    color: "bg-green-100 text-green-700",
-  },
-  {
-    id: "livestock",
-    name: "Livestock & Poultry",
-    description: "Animal husbandry, breeding, health, and management practices",
-    topics: 198,
-    posts: 1653,
-    icon: "🐄",
-    color: "bg-amber-100 text-amber-700",
-  },
-  {
-    id: "agritech",
-    name: "AgriTech & Innovation",
-    description: "Technology solutions, IoT, drones, and digital tools for farming",
-    topics: 267,
-    posts: 2134,
-    icon: "💡",
-    color: "bg-blue-100 text-blue-700",
-  },
-  {
-    id: "agribusiness",
-    name: "Agribusiness & Finance",
-    description: "Business models, funding, market access, and financial planning",
-    topics: 423,
-    posts: 3521,
-    icon: "💼",
-    color: "bg-purple-100 text-purple-700",
-  },
-  {
-    id: "climate",
-    name: "Climate & Sustainability",
-    description: "Climate-smart agriculture, conservation, and environmental practices",
-    topics: 156,
-    posts: 1289,
-    icon: "🌍",
-    color: "bg-teal-100 text-teal-700",
-  },
-  {
-    id: "policy",
-    name: "Policy & Advocacy",
-    description: "Agricultural policies, regulations, and advocacy initiatives",
-    topics: 89,
-    posts: 743,
-    icon: "📋",
-    color: "bg-red-100 text-red-700",
-  },
+  { id: "crop-management", name: "Crop Management", description: "Planting, harvesting, pest control, and crop optimisation", topics: 342, posts: 2847, icon: "🌾" },
+  { id: "livestock", name: "Livestock & Poultry", description: "Animal husbandry, breeding, health, and management", topics: 198, posts: 1653, icon: "🐄" },
+  { id: "agritech", name: "AgriTech & Innovation", description: "Technology solutions, IoT, drones, and digital tools", topics: 267, posts: 2134, icon: "💡" },
+  { id: "agribusiness", name: "Agribusiness & Finance", description: "Business models, funding, market access, and planning", topics: 423, posts: 3521, icon: "💼" },
+  { id: "climate", name: "Climate & Sustainability", description: "Climate-smart agriculture, conservation, and environment", topics: 156, posts: 1289, icon: "🌍" },
+  { id: "policy", name: "Policy & Advocacy", description: "Agricultural policies, regulations, and advocacy", topics: 89, posts: 743, icon: "📋" },
 ]
 
 const featuredTopics = [
-  {
-    id: 1,
-    title: "Best practices for organic pest control in tropical climates",
-    author: "Amara Okafor",
-    avatar: "AO",
-    category: "Crop Management",
-    replies: 47,
-    views: 1203,
-    isPinned: true,
-    lastActivity: "2 hours ago",
-  },
-  {
-    id: 2,
-    title: "Securing funding for agritech startups in West Africa",
-    author: "Kwame Mensah",
-    avatar: "KM",
-    category: "Agribusiness",
-    replies: 89,
-    views: 2456,
-    isPinned: true,
-    lastActivity: "4 hours ago",
-  },
-  {
-    id: 3,
-    title: "Implementing blockchain for supply chain transparency",
-    author: "Fatima Hassan",
-    avatar: "FH",
-    category: "AgriTech",
-    replies: 34,
-    views: 987,
-    isPinned: false,
-    lastActivity: "1 day ago",
-  },
+  { id: 1, title: "Best practices for organic pest control in tropical climates", author: "Amara Okafor", avatar: "AO", category: "Crop Management", replies: 47, views: 1203, isPinned: true, lastActivity: "2 hours ago" },
+  { id: 2, title: "Securing funding for agritech startups in West Africa", author: "Kwame Mensah", avatar: "KM", category: "Agribusiness", replies: 89, views: 2456, isPinned: true, lastActivity: "4 hours ago" },
+  { id: 3, title: "Implementing blockchain for supply chain transparency", author: "Fatima Hassan", avatar: "FH", category: "AgriTech", replies: 34, views: 987, isPinned: false, lastActivity: "1 day ago" },
 ]
 
 export default function ForumsPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="bg-primary text-primary-foreground py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold mb-4">Community Forums</h1>
-          <p className="text-lg text-primary-foreground/90 max-w-2xl text-pretty">
-            Connect with agricultural experts and peers across Africa. Share knowledge, ask questions, and collaborate
-            on solutions.
-          </p>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Search and Actions */}
-        <div className="flex flex-col sm:flex-row gap-4 mb-8">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-            <Input placeholder="Search discussions..." className="pl-10" />
+      <section className="border-b border-border bg-card">
+        <div className="container-wide py-14 lg:py-16">
+          <div className="flex items-end justify-between gap-4">
+            <div className="max-w-2xl">
+              <Badge variant="outline" className="uppercase tracking-[0.15em] text-xs mb-4">
+                Community
+              </Badge>
+              <h1 className="text-3xl sm:text-4xl font-bold mb-4">Forums</h1>
+              <p className="text-muted-foreground text-[15px] leading-relaxed prose-readable">
+                Connect with agricultural experts and peers across Africa. Share knowledge, ask questions, and collaborate on solutions.
+              </p>
+            </div>
+            <Button className="hidden sm:inline-flex bg-brand-navy hover:bg-brand-navy/90 text-white rounded-full px-6">
+              New Discussion
+            </Button>
           </div>
-          <Button className="bg-primary hover:bg-primary/90">Start New Discussion</Button>
+        </div>
+      </section>
+
+      <div className="container-wide section-padding">
+        {/* Search */}
+        <div className="relative max-w-md mb-10">
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <Input placeholder="Search discussions..." className="pl-10 h-10" />
         </div>
 
-        {/* Featured/Pinned Topics */}
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Featured Discussions</h2>
+        {/* Pinned / Featured */}
+        <div className="mb-12">
+          <h2 className="text-xl font-semibold mb-5">Featured discussions</h2>
           <div className="space-y-3">
             {featuredTopics.map((topic) => (
-              <Card key={topic.id} className="hover:shadow-md transition-shadow">
-                <CardContent className="p-4">
-                  <div className="flex items-start gap-4">
-                    <Avatar className="w-10 h-10">
-                      <AvatarFallback className="bg-primary text-primary-foreground">{topic.avatar}</AvatarFallback>
-                    </Avatar>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-2 flex-wrap">
-                        {topic.isPinned && (
-                          <Badge variant="secondary" className="bg-secondary text-secondary-foreground">
-                            <Pin className="w-3 h-3 mr-1" />
-                            Pinned
-                          </Badge>
-                        )}
-                        <Badge variant="outline">{topic.category}</Badge>
-                      </div>
-                      <Link href={`/forums/topic/${topic.id}`}>
-                        <h3 className="font-semibold text-lg hover:text-primary transition-colors mb-1 text-balance">
+              <Link key={topic.id} href={`/forums/topic/${topic.id}`} className="group block">
+                <Card className="border-border/60 hover:border-border hover:shadow-sm transition-all duration-200">
+                  <CardContent className="py-4 px-5">
+                    <div className="flex items-start gap-3">
+                      <Avatar className="w-9 h-9 flex-shrink-0">
+                        <AvatarFallback className="bg-muted text-muted-foreground text-xs">{topic.avatar}</AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                          {topic.isPinned && (
+                            <Badge variant="secondary" className="text-xs gap-1"><Pin className="w-3 h-3" />Pinned</Badge>
+                          )}
+                          <Badge variant="outline" className="text-xs font-normal">{topic.category}</Badge>
+                        </div>
+                        <h3 className="font-semibold text-[15px] group-hover:text-brand-navy transition-colors mb-1">
                           {topic.title}
                         </h3>
-                      </Link>
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground flex-wrap">
-                        <span>by {topic.author}</span>
-                        <div className="flex items-center gap-1">
-                          <MessageSquare className="w-4 h-4" />
-                          <span>{topic.replies} replies</span>
+                        <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                          <span>{topic.author}</span>
+                          <span className="text-border">·</span>
+                          <span className="flex items-center gap-1"><MessageSquare className="w-3 h-3" />{topic.replies}</span>
+                          <span className="flex items-center gap-1"><Users className="w-3 h-3" />{topic.views.toLocaleString()}</span>
+                          <span className="text-border">·</span>
+                          <span>{topic.lastActivity}</span>
                         </div>
-                        <div className="flex items-center gap-1">
-                          <Users className="w-4 h-4" />
-                          <span>{topic.views} views</span>
-                        </div>
-                        <span>Last activity {topic.lastActivity}</span>
                       </div>
+                      <ArrowUpRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity mt-1 flex-shrink-0" />
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>
 
         {/* Categories */}
         <div>
-          <h2 className="text-2xl font-bold mb-4">Browse by Category</h2>
-          <div className="grid md:grid-cols-2 gap-4">
+          <h2 className="text-xl font-semibold mb-5">Browse by category</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {categories.map((category) => (
-              <Link key={category.id} href={`/forums/category/${category.id}`}>
-                <Card className="hover:shadow-lg transition-shadow h-full">
-                  <CardHeader>
-                    <div className="flex items-start gap-4">
-                      <div
-                        className={`w-12 h-12 rounded-lg ${category.color} flex items-center justify-center text-2xl`}
-                      >
-                        {category.icon}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <CardTitle className="text-xl mb-1">{category.name}</CardTitle>
-                        <CardDescription className="text-pretty">{category.description}</CardDescription>
+              <Link key={category.id} href={`/forums/category/${category.id}`} className="group">
+                <Card className="h-full border-border/60 hover:border-border hover:shadow-sm transition-all duration-200">
+                  <CardHeader className="pb-3">
+                    <div className="flex items-start gap-3">
+                      <span className="text-2xl" role="img" aria-label={category.name}>{category.icon}</span>
+                      <div>
+                        <CardTitle className="text-base group-hover:text-brand-navy transition-colors">{category.name}</CardTitle>
+                        <CardDescription className="text-sm mt-1">{category.description}</CardDescription>
                       </div>
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <MessageSquare className="w-4 h-4" />
-                        <span>{category.topics} topics</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Users className="w-4 h-4" />
-                        <span>{category.posts} posts</span>
-                      </div>
+                    <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                      <span className="flex items-center gap-1"><MessageSquare className="w-3 h-3" />{category.topics} topics</span>
+                      <span className="flex items-center gap-1"><Users className="w-3 h-3" />{category.posts.toLocaleString()} posts</span>
                     </div>
                   </CardContent>
                 </Card>
