@@ -152,22 +152,10 @@
 }
 
 @layer utilities {
-  .section-padding {
-    @apply py-16 lg:py-24;
-  }
-  .section-padding-sm {
-    @apply py-10 lg:py-14;
-  }
   .container-wide {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
   .container-narrow {
     @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
-  }
-  .prose-readable {
-    @apply max-w-[68ch];
-  }
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-linear-to-r from-brand-navy to-brand-teal;
   }
 }

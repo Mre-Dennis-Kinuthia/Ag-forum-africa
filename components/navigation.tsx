@@ -1,33 +1,11 @@
 "use client"
 
 import { useState } from "react"
-import {
-  Menu,
-  X,
-  Search,
-  ChevronDown,
-  BarChart3,
-  FileText,
-  TrendingUp,
-  BookOpen,
-  Video,
-  Briefcase,
-  Sun,
-  Moon,
-} from "lucide-react"
+import { Menu, X, Search, ChevronDown, Sun, Moon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Logo } from "@/components/logo"
 import Link from "next/link"
 import { useTheme } from "next-themes"
-
-const intelligenceLinks = [
-  { href: "/intelligence", label: "Overview", description: "Capital, policy, and market intelligence", icon: BarChart3 },
-  { href: "/intelligence/capital-tracker", label: "Capital Tracker", description: "Committed and announced capital flows", icon: TrendingUp },
-]
-
-const researchLinks = [
-  { href: "/knowledge-hub", label: "Publications", description: "Policy briefs, reports, and toolkits", icon: FileText },
-]
 
 export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -37,143 +15,78 @@ export function Navigation() {
   return (
     <header className="sticky top-0 z-50">
       {/* Utility bar */}
-      <div className="hidden lg:block bg-brand-navy text-white/80">
-        <div className="container-wide flex items-center justify-between h-8 text-xs">
-          <div className="flex items-center gap-4">
+      <div className="hidden lg:block bg-brand-navy text-white/70 text-[13px]">
+        <div className="container-wide flex items-center justify-between h-8">
+          <div className="flex items-center gap-5">
             <Link href="/about" className="hover:text-white transition-colors">About</Link>
             <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-5">
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="hover:text-white transition-colors flex items-center gap-1.5"
+              className="hover:text-white transition-colors"
             >
-              <Sun className="h-3 w-3 dark:hidden" />
-              <Moon className="h-3 w-3 hidden dark:block" />
-              <span className="dark:hidden">Dark</span>
-              <span className="hidden dark:inline">Light</span>
+              <Sun className="h-3.5 w-3.5 dark:hidden" />
+              <Moon className="h-3.5 w-3.5 hidden dark:block" />
             </button>
-            <Link href="/login" className="hover:text-white transition-colors">Sign In</Link>
+            <Link href="/login" className="hover:text-white transition-colors">Sign in</Link>
           </div>
         </div>
       </div>
 
-      {/* Main navigation */}
+      {/* Main nav */}
       <nav className="bg-card/95 backdrop-blur-md border-b border-border">
-        <div className="container-wide flex items-center justify-between h-16 lg:h-[4.25rem]">
+        <div className="container-wide flex items-center justify-between h-14 lg:h-16">
           <Logo />
 
-          {/* Desktop nav */}
+          {/* Desktop */}
           <div className="hidden lg:flex items-center gap-1">
-            {/* Intelligence dropdown */}
             <div
               className="relative"
               onMouseEnter={() => setOpenDropdown("intelligence")}
               onMouseLeave={() => setOpenDropdown(null)}
             >
-              <Link
-                href="/intelligence"
-                className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-foreground/80 hover:text-foreground rounded-md transition-colors"
-              >
-                Intelligence
-                <ChevronDown className="h-3.5 w-3.5 opacity-50" />
+              <Link href="/intelligence" className="inline-flex items-center gap-1 px-3 py-2 text-sm text-foreground/70 hover:text-foreground transition-colors">
+                Intelligence <ChevronDown className="h-3 w-3 opacity-40" />
               </Link>
               {openDropdown === "intelligence" && (
-                <div className="absolute top-full left-0 pt-1 w-72">
-                  <div className="bg-card rounded-lg border border-border shadow-lg p-2">
-                    {intelligenceLinks.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className="flex items-start gap-3 p-3 rounded-md hover:bg-muted transition-colors"
-                      >
-                        <item.icon className="h-4 w-4 mt-0.5 text-muted-foreground" />
-                        <div>
-                          <div className="text-sm font-medium text-foreground">{item.label}</div>
-                          <div className="text-xs text-muted-foreground mt-0.5">{item.description}</div>
-                        </div>
-                      </Link>
-                    ))}
+                <div className="absolute top-full left-0 pt-1.5 w-64">
+                  <div className="bg-card rounded-lg border border-border shadow-lg py-1.5">
+                    <Link href="/intelligence" className="block px-4 py-2 text-sm hover:bg-muted transition-colors">Overview</Link>
+                    <Link href="/intelligence/capital-tracker" className="block px-4 py-2 text-sm hover:bg-muted transition-colors">Capital Tracker</Link>
                   </div>
                 </div>
               )}
             </div>
 
-            {/* Research dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => setOpenDropdown("research")}
-              onMouseLeave={() => setOpenDropdown(null)}
-            >
-              <Link
-                href="/knowledge-hub"
-                className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-foreground/80 hover:text-foreground rounded-md transition-colors"
-              >
-                Research
-                <ChevronDown className="h-3.5 w-3.5 opacity-50" />
-              </Link>
-              {openDropdown === "research" && (
-                <div className="absolute top-full left-0 pt-1 w-72">
-                  <div className="bg-card rounded-lg border border-border shadow-lg p-2">
-                    {researchLinks.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className="flex items-start gap-3 p-3 rounded-md hover:bg-muted transition-colors"
-                      >
-                        <item.icon className="h-4 w-4 mt-0.5 text-muted-foreground" />
-                        <div>
-                          <div className="text-sm font-medium text-foreground">{item.label}</div>
-                          <div className="text-xs text-muted-foreground mt-0.5">{item.description}</div>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <Link
-              href="/events"
-              className="px-3 py-2 text-sm font-medium text-foreground/80 hover:text-foreground rounded-md transition-colors"
-            >
+            <Link href="/knowledge-hub" className="px-3 py-2 text-sm text-foreground/70 hover:text-foreground transition-colors">
+              Research
+            </Link>
+            <Link href="/events" className="px-3 py-2 text-sm text-foreground/70 hover:text-foreground transition-colors">
               Events
             </Link>
-            <Link
-              href="/stories"
-              className="px-3 py-2 text-sm font-medium text-foreground/80 hover:text-foreground rounded-md transition-colors"
-            >
+            <Link href="/stories" className="px-3 py-2 text-sm text-foreground/70 hover:text-foreground transition-colors">
               Case Studies
             </Link>
-            <Link
-              href="/community"
-              className="px-3 py-2 text-sm font-medium text-foreground/80 hover:text-foreground rounded-md transition-colors"
-            >
+            <Link href="/community" className="px-3 py-2 text-sm text-foreground/70 hover:text-foreground transition-colors">
               Community
             </Link>
           </div>
 
           {/* Desktop actions */}
-          <div className="hidden lg:flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
-              <Search className="h-4.5 w-4.5" />
-              <span className="sr-only">Search</span>
-            </Button>
-            <Button asChild size="sm" className="bg-brand-navy hover:bg-brand-navy/90 text-white rounded-full px-5">
-              <Link href="/register">Request Access</Link>
+          <div className="hidden lg:flex items-center gap-3">
+            <button className="text-muted-foreground hover:text-foreground transition-colors p-1.5">
+              <Search className="h-[18px] w-[18px]" />
+            </button>
+            <Button asChild size="sm" className="bg-brand-navy hover:bg-brand-navy/90 text-white h-8 px-4 text-[13px]">
+              <Link href="/register">Request access</Link>
             </Button>
           </div>
 
-          {/* Mobile toggle */}
-          <div className="flex items-center gap-2 lg:hidden">
-            <Button variant="ghost" size="icon" className="text-muted-foreground">
-              <Search className="h-4.5 w-4.5" />
-            </Button>
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg hover:bg-muted transition-colors"
-              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-            >
+          {/* Mobile */}
+          <div className="flex items-center gap-1 lg:hidden">
+            <button className="p-2 text-muted-foreground"><Search className="h-5 w-5" /></button>
+            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2" aria-label="Menu">
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
@@ -182,61 +95,33 @@ export function Navigation() {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-[4rem] bottom-0 z-40 bg-card border-t border-border overflow-y-auto">
-          <div className="px-4 py-6 space-y-1">
-            <p className="px-3 pb-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">Intelligence</p>
-            {intelligenceLinks.map((item) => (
+        <div className="lg:hidden fixed inset-x-0 top-[3.5rem] bottom-0 z-40 bg-card overflow-y-auto">
+          <div className="p-5 space-y-1">
+            {[
+              { href: "/intelligence", label: "Intelligence" },
+              { href: "/intelligence/capital-tracker", label: "Capital Tracker" },
+              { href: "/knowledge-hub", label: "Research" },
+              { href: "/events", label: "Events" },
+              { href: "/stories", label: "Case Studies" },
+              { href: "/community", label: "Community" },
+              { href: "/about", label: "About" },
+              { href: "/contact", label: "Contact" },
+            ].map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="flex items-center gap-3 px-3 py-2.5 rounded-md hover:bg-muted transition-colors"
+                className="block py-2.5 text-[15px] hover:text-brand-navy transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                <item.icon className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm font-medium">{item.label}</span>
+                {item.label}
               </Link>
             ))}
-
-            <div className="pt-3">
-              <p className="px-3 pb-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">Research</p>
-              {researchLinks.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="flex items-center gap-3 px-3 py-2.5 rounded-md hover:bg-muted transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <item.icon className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-sm font-medium">{item.label}</span>
-                </Link>
-              ))}
-            </div>
-
-            <div className="pt-3 space-y-1">
-              <p className="px-3 pb-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">More</p>
-              <Link href="/events" className="flex items-center gap-3 px-3 py-2.5 rounded-md hover:bg-muted" onClick={() => setMobileMenuOpen(false)}>
-                <span className="text-sm font-medium">Events</span>
-              </Link>
-              <Link href="/stories" className="flex items-center gap-3 px-3 py-2.5 rounded-md hover:bg-muted" onClick={() => setMobileMenuOpen(false)}>
-                <span className="text-sm font-medium">Case Studies</span>
-              </Link>
-              <Link href="/community" className="flex items-center gap-3 px-3 py-2.5 rounded-md hover:bg-muted" onClick={() => setMobileMenuOpen(false)}>
-                <span className="text-sm font-medium">Community</span>
-              </Link>
-              <Link href="/about" className="flex items-center gap-3 px-3 py-2.5 rounded-md hover:bg-muted" onClick={() => setMobileMenuOpen(false)}>
-                <span className="text-sm font-medium">About</span>
-              </Link>
-              <Link href="/contact" className="flex items-center gap-3 px-3 py-2.5 rounded-md hover:bg-muted" onClick={() => setMobileMenuOpen(false)}>
-                <span className="text-sm font-medium">Contact</span>
-              </Link>
-            </div>
-
-            <div className="pt-6 space-y-2 border-t border-border mt-4">
+            <div className="pt-5 mt-4 border-t border-border space-y-2">
               <Button variant="outline" className="w-full" asChild>
-                <Link href="/login">Sign In</Link>
+                <Link href="/login">Sign in</Link>
               </Button>
-              <Button className="w-full bg-brand-navy hover:bg-brand-navy/90 text-white" asChild>
-                <Link href="/register">Request Access</Link>
+              <Button className="w-full bg-brand-navy text-white" asChild>
+                <Link href="/register">Request access</Link>
               </Button>
             </div>
           </div>
