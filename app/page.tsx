@@ -11,16 +11,31 @@ const audiences = [
   "Agribusiness operators",
 ]
 
-const availableNow = [
-  { label: "Mission & approach", detail: "Who we serve and how we work", href: "/about" },
-  { label: "Early access enquiries", detail: "Partnership and pilot conversations", href: "/contact" },
-  { label: "Intelligence notes", detail: "Quarterly agrifood updates by email", href: "#updates" },
-]
-
-const comingLater = [
-  { title: "Research briefs", status: "Planned", desc: "Sourced analysis on value chains, trade, and climate." },
-  { title: "Forums & convening", status: "In development", desc: "Curated sessions for institutions shaping policy and capital." },
-  { title: "Intelligence tools", status: "Planned", desc: "Monitoring for markets, land use, and investment flows." },
+const startHere = [
+  {
+    num: "01",
+    title: "Read our mission",
+    forWho: "Evaluating whether Agforum fits your work",
+    detail: "Who we serve, our principles, and where we are in development.",
+    cta: "About Agforum",
+    href: "/about",
+  },
+  {
+    num: "02",
+    title: "Register your interest",
+    forWho: "Ministries, DFIs, cooperatives & operators",
+    detail: "Join the early-access conversation — partnerships, pilots, and launch planning.",
+    cta: "Contact us",
+    href: "/contact",
+  },
+  {
+    num: "03",
+    title: "Subscribe to updates",
+    forWho: "Anyone following African agrifood",
+    detail: "Quarterly intelligence notes on policy, markets, and sector signals — by email only.",
+    cta: "Subscribe",
+    href: "#updates",
+  },
 ]
 
 const planned = [
@@ -100,53 +115,54 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-14 sm:py-20 lg:py-24 border-b border-soil/10">
-        <div className="container-wide grid lg:grid-cols-2 gap-12 lg:gap-20">
-          <div>
-            <p className="text-eyebrow text-field mb-3">Available now</p>
-            <h2 className="heading-h2 text-xl sm:text-2xl mb-6">What you can engage with today</h2>
-            <ul className="space-y-4">
-              {availableNow.map((item) => (
-                <li key={item.label} className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 border-b border-soil/10 pb-4 last:border-0 last:pb-0">
-                  <div>
-                    <p className="text-sm text-forest font-medium">{item.label}</p>
-                    <p className="text-xs text-muted mt-0.5">{item.detail}</p>
-                  </div>
-                  <Link
-                    href={item.href}
-                    className="text-xs text-field hover:text-forest transition-colors shrink-0"
-                  >
-                    {item.href.startsWith("#") ? "Subscribe below" : "Learn more →"}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+      <section className="py-14 sm:py-20 lg:py-24 border-b border-soil/10 bg-wheat/15">
+        <div className="container-wide">
+          <div className="max-w-2xl mb-10 sm:mb-14">
+            <p className="text-eyebrow text-soil mb-3">Pre-launch</p>
+            <h2 className="heading-h2 text-xl sm:text-2xl lg:text-3xl mb-4">
+              The platform isn&apos;t live yet — here&apos;s how to engage
+            </h2>
+            <p className="text-sm text-muted leading-relaxed">
+              Agforum is in development with a small group of institutional partners.
+              Until the full platform launches, these are the three ways to connect with us.
+            </p>
           </div>
 
-          <div>
-            <p className="text-eyebrow text-soil mb-3">Coming later</p>
-            <h2 className="heading-h2 text-xl sm:text-2xl mb-6">Capabilities in development</h2>
-            <ul className="space-y-5">
-              {comingLater.map((item) => (
-                <li key={item.title} className="border-l-2 border-soil/15 pl-4">
-                  <div className="flex items-baseline justify-between gap-3 mb-1">
-                    <p className="text-sm text-forest">{item.title}</p>
-                    <span className="text-eyebrow text-soil/70 shrink-0">{item.status}</span>
-                  </div>
-                  <p className="text-xs text-muted leading-relaxed">{item.desc}</p>
-                </li>
-              ))}
-            </ul>
+          <div className="grid md:grid-cols-3 gap-px bg-soil/12">
+            {startHere.map((item) => (
+              <div key={item.num} className="bg-loam p-6 sm:p-8 flex flex-col">
+                <span className="section-number mb-5">{item.num}</span>
+                <h3 className="heading-h2 text-lg sm:text-xl mb-2">{item.title}</h3>
+                <p className="text-eyebrow text-field mb-3">{item.forWho}</p>
+                <p className="text-sm text-muted leading-relaxed flex-1">{item.detail}</p>
+                <Link
+                  href={item.href}
+                  className="btn-nav-lean mt-6 w-fit"
+                >
+                  {item.cta}
+                </Link>
+              </div>
+            ))}
           </div>
+
+          <p className="text-xs text-soil/55 mt-8 sm:mt-10 leading-relaxed max-w-xl">
+            Full platform capabilities — research briefs, forums, and intelligence tools — are listed below.
+            They will open to partners first, then more broadly.{" "}
+            <Link href="#capabilities" className="text-field hover:text-forest transition-colors">
+              See the roadmap ↓
+            </Link>
+          </p>
         </div>
       </section>
 
+      <section id="capabilities" className="scroll-mt-20">
       <GrainGradient variant="soft" className="py-14 sm:py-20 lg:py-32">
         <div className="container-wide">
-          <p className="text-eyebrow text-soil mb-3 sm:mb-4">What we&apos;re building</p>
-          <h2 className="heading-h2 mb-4 sm:mb-5 max-w-xl">Capabilities for the agrifood sector</h2>
-          <p className="text-sm text-muted max-w-md mb-10 sm:mb-16 leading-relaxed">
-            Three pillars — convening, research, and intelligence — designed for institutions that need depth, not noise.
+          <p className="text-eyebrow text-soil mb-3 sm:mb-4">Roadmap</p>
+          <h2 className="heading-h2 mb-4 sm:mb-5 max-w-xl">What we&apos;re building toward</h2>
+          <p className="text-sm text-muted max-w-lg mb-10 sm:mb-16 leading-relaxed">
+            Three capabilities for institutions that need depth on African agrifood — none are publicly available yet.
+            Status reflects where each sits in our development with partners.
           </p>
 
           <div className="grid md:grid-cols-2 gap-px bg-soil/15">
@@ -181,6 +197,7 @@ export default function HomePage() {
           </div>
         </div>
       </GrainGradient>
+      </section>
 
       <section className="relative min-h-[16rem] sm:min-h-0 sm:aspect-[3/1] overflow-hidden">
         <Image
