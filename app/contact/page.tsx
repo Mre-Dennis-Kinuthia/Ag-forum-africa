@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
@@ -12,17 +11,18 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false)
 
   return (
-    <div className="bg-background">
-      <section className="border-b border-border bg-card">
-        <div className="container-wide py-12 lg:py-16">
-          <h1 className="text-3xl sm:text-4xl font-bold mb-3">Contact</h1>
-          <p className="text-muted-foreground max-w-lg">
-            Questions about intelligence products, institutional access, or research collaboration.
+    <div>
+      <section className="bg-sov-off-white border-b border-black/5">
+        <div className="container-wide py-16 lg:py-24">
+          <p className="text-eyebrow text-sov-mud mb-6">Contact</p>
+          <h1 className="heading-h1 max-w-2xl">Get in touch.</h1>
+          <p className="mt-5 text-lg max-w-xl leading-relaxed" style={{ color: "var(--sov-text-secondary)" }}>
+            Whether you&apos;re an investor, policymaker, or operator — we want to hear from you.
           </p>
         </div>
       </section>
 
-      <div className="container-wide py-10 lg:py-16 grid lg:grid-cols-[1fr,320px] gap-12 lg:gap-20">
+      <div className="container-wide py-12 lg:py-20 grid lg:grid-cols-[1fr,320px] gap-12 lg:gap-20">
         {submitted ? (
           <div className="py-16">
             <Mail className="h-6 w-6 text-muted-foreground mb-4" />
@@ -64,9 +64,9 @@ export default function ContactPage() {
               <Label htmlFor="message" className="text-sm">Message</Label>
               <Textarea id="message" required rows={5} className="resize-none" />
             </div>
-            <Button type="submit" className="bg-brand-navy text-white h-10 px-6">
+            <button type="submit" className="btn-pill-dark">
               Send message
-            </Button>
+            </button>
           </form>
         )}
 

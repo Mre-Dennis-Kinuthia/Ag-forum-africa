@@ -1,138 +1,81 @@
 "use client"
 
 import { useState } from "react"
-import { Menu, X, Search, ChevronDown, Sun, Moon } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Menu, X } from "lucide-react"
 import { Logo } from "@/components/logo"
 import Link from "next/link"
-import { useTheme } from "next-themes"
+
+const navItems = [
+  { num: "01", label: "Intelligence", href: "/intelligence" },
+  { num: "02", label: "Research", href: "/knowledge-hub" },
+  { num: "03", label: "Events", href: "/events" },
+  { num: "04", label: "Convening", href: "/community" },
+  { num: "05", label: "About", href: "/about" },
+]
 
 export function Navigation() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
-  const { theme, setTheme } = useTheme()
+  const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50">
-      {/* Utility bar */}
-      <div className="hidden lg:block bg-brand-navy text-white/70 text-[13px]">
-        <div className="container-wide flex items-center justify-between h-8">
-          <div className="flex items-center gap-5">
-            <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
+    <header className="sticky top-0 z-50 bg-sov-off-white/95 backdrop-blur-md border-b border-black/5">
+      <div className="container-wide">
+        <div className="flex items-center justify-between h-14 lg:h-16">
+          {/* Location badge */}
+          <div className="hidden sm:flex items-center gap-2 text-eyebrow text-sov-mud">
+            <span>Africa</span>
+            <span className="text-black/20">·</span>
+            <span>EAT</span>
           </div>
-          <div className="flex items-center gap-5">
+
+          {/* Center logo */}
+          <div className="absolute left-1/2 -translate-x-1/2">
+            <Logo />
+          </div>
+
+          {/* Right actions */}
+          <div className="flex items-center gap-4 ml-auto">
+            <Link href="/contact" className="hidden lg:inline-flex btn-pill-dark text-xs px-5 py-2">
+              Get in Touch
+            </Link>
             <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="hover:text-white transition-colors"
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="flex items-center gap-2 text-sm text-foreground/70 hover:text-foreground transition-colors"
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
             >
-              <Sun className="h-3.5 w-3.5 dark:hidden" />
-              <Moon className="h-3.5 w-3.5 hidden dark:block" />
+              <span className="hidden sm:inline text-eyebrow">{menuOpen ? "Close" : "Menu"}</span>
+              {menuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
             </button>
-            <Link href="/login" className="hover:text-white transition-colors">Sign in</Link>
           </div>
         </div>
       </div>
 
-      {/* Main nav */}
-      <nav className="bg-card/95 backdrop-blur-md border-b border-border">
-        <div className="container-wide flex items-center justify-between h-14 lg:h-16">
-          <Logo />
+      {/* Full-screen menu overlay */}
+      {menuOpen && (
+        <div className="fixed inset-0 top-14 lg:top-16 z-40 bg-sov-off-white overflow-y-auto">
+          <div className="container-wide py-12 lg:py-20">
+            <nav className="grid gap-2">
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="group flex items-baseline gap-6 py-4 border-b border-black/5 hover:border-sov-teal/30 transition-colors"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <span className="section-number w-8">{item.num}</span>
+                  <span className="heading-h2 text-3xl lg:text-5xl group-hover:text-sov-teal transition-colors">
+                    {item.label}
+                  </span>
+                </Link>
+              ))}
+            </nav>
 
-          {/* Desktop */}
-          <div className="hidden lg:flex items-center gap-1">
-            <div
-              className="relative"
-              onMouseEnter={() => setOpenDropdown("intelligence")}
-              onMouseLeave={() => setOpenDropdown(null)}
-            >
-              <Link href="/intelligence" className="inline-flex items-center gap-1 px-3 py-2 text-sm text-foreground/70 hover:text-foreground transition-colors">
-                Intelligence <ChevronDown className="h-3 w-3 opacity-40" />
+            <div className="mt-12 pt-8 border-t border-black/5 flex flex-col sm:flex-row gap-4">
+              <Link href="/contact" className="btn-pill-dark" onClick={() => setMenuOpen(false)}>
+                Get in Touch
               </Link>
-              {openDropdown === "intelligence" && (
-                <div className="absolute top-full left-0 pt-1.5 w-64">
-                  <div className="bg-card rounded-lg border border-border shadow-lg py-1.5">
-                    <Link href="/intelligence" className="block px-4 py-2 text-sm hover:bg-muted transition-colors">Overview</Link>
-                    <Link href="/intelligence/capital-tracker" className="block px-4 py-2 text-sm hover:bg-muted transition-colors">Capital Tracker</Link>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div
-              className="relative"
-              onMouseEnter={() => setOpenDropdown("research")}
-              onMouseLeave={() => setOpenDropdown(null)}
-            >
-              <Link href="/knowledge-hub" className="inline-flex items-center gap-1 px-3 py-2 text-sm text-foreground/70 hover:text-foreground transition-colors">
-                Research <ChevronDown className="h-3 w-3 opacity-40" />
+              <Link href="/login" className="btn-pill-outline" onClick={() => setMenuOpen(false)}>
+                Sign in
               </Link>
-              {openDropdown === "research" && (
-                <div className="absolute top-full left-0 pt-1.5 w-64">
-                  <div className="bg-card rounded-lg border border-border shadow-lg py-1.5">
-                    <Link href="/knowledge-hub" className="block px-4 py-2 text-sm hover:bg-muted transition-colors">Publications</Link>
-                    <Link href="/stories" className="block px-4 py-2 text-sm hover:bg-muted transition-colors">Case Studies</Link>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <Link href="/events" className="px-3 py-2 text-sm text-foreground/70 hover:text-foreground transition-colors">
-              Events
-            </Link>
-            <Link href="/about" className="px-3 py-2 text-sm text-foreground/70 hover:text-foreground transition-colors">
-              About
-            </Link>
-          </div>
-
-          {/* Desktop actions */}
-          <div className="hidden lg:flex items-center gap-3">
-            <button className="text-muted-foreground hover:text-foreground transition-colors p-1.5">
-              <Search className="h-[18px] w-[18px]" />
-            </button>
-            <Button asChild size="sm" className="bg-brand-navy hover:bg-brand-navy/90 text-white h-8 px-4 text-[13px]">
-              <Link href="/register">Request access</Link>
-            </Button>
-          </div>
-
-          {/* Mobile */}
-          <div className="flex items-center gap-1 lg:hidden">
-            <button className="p-2 text-muted-foreground"><Search className="h-5 w-5" /></button>
-            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2" aria-label="Menu">
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
-        </div>
-      </nav>
-
-      {/* Mobile menu */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-[3.5rem] bottom-0 z-40 bg-card overflow-y-auto">
-          <div className="p-5 space-y-1">
-            {[
-              { href: "/intelligence", label: "Intelligence" },
-              { href: "/intelligence/capital-tracker", label: "Capital Tracker" },
-              { href: "/knowledge-hub", label: "Research" },
-              { href: "/stories", label: "Case Studies" },
-              { href: "/events", label: "Events" },
-              { href: "/about", label: "About" },
-              { href: "/contact", label: "Contact" },
-            ].map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="block py-2.5 text-[15px] hover:text-brand-navy transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
-            <div className="pt-5 mt-4 border-t border-border space-y-2">
-              <Button variant="outline" className="w-full" asChild>
-                <Link href="/login">Sign in</Link>
-              </Button>
-              <Button className="w-full bg-brand-navy text-white" asChild>
-                <Link href="/register">Request access</Link>
-              </Button>
             </div>
           </div>
         </div>

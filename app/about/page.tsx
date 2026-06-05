@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
+import { PageHero } from "@/components/page-hero"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -10,23 +10,20 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="bg-background">
-      <section className="border-b border-border bg-card">
-        <div className="container-wide py-12 lg:py-16">
-          <h1 className="text-3xl sm:text-4xl font-bold mb-3">About Agforum</h1>
-          <p className="text-muted-foreground max-w-lg">
-            Institutional intelligence and convening for the organisations shaping Africa's agrifood future.
-          </p>
-        </div>
-      </section>
+    <div>
+      <PageHero
+        eyebrow="05 About"
+        title="The team behind Africa's agrifood intelligence."
+        description="Institutional intelligence and convening for the organisations shaping Africa's agrifood future."
+      />
 
-      {/* Mission — long-form, editorial */}
-      <section className="container-wide py-14 lg:py-20 grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+      <section className="container-wide py-16 lg:py-24 grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
         <div>
-          <h2 className="text-xl font-semibold mb-4">Our mission</h2>
-          <div className="space-y-4 text-[15px] text-muted-foreground leading-relaxed">
+          <p className="text-eyebrow text-sov-mud mb-4">Our mission</p>
+          <h2 className="heading-h2 mb-6">Evidence over guesswork</h2>
+          <div className="space-y-4 text-sm leading-relaxed" style={{ color: "var(--sov-text-secondary)" }}>
             <p>
-              Africa's agricultural systems represent one of the largest opportunities for sustainable development and
+              Africa&apos;s agricultural systems represent one of the largest opportunities for sustainable development and
               climate-resilient growth. Yet institutional decision-makers — DFIs, sovereign funds, regulators, and
               operators — often lack the structured, timely intelligence they need to allocate capital, design policy,
               or enter markets with confidence.
@@ -37,7 +34,7 @@ export default function AboutPage() {
             </p>
           </div>
         </div>
-        <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-muted">
+        <div className="relative aspect-[4/3] overflow-hidden bg-sov-white-rock">
           <Image
             src="/african-farmland-aerial-view-green-fields.jpg"
             alt="Aerial view of farmland"
@@ -47,29 +44,30 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Principles — no cards, just text */}
-      <section className="bg-muted/40 border-y border-border">
-        <div className="container-wide py-14 lg:py-20">
-          <h2 className="text-xl font-semibold mb-8">Principles</h2>
-          <div className="grid sm:grid-cols-2 gap-x-16 gap-y-8">
+      <section className="bg-sov-white-rock py-16 lg:py-24">
+        <div className="container-wide">
+          <p className="text-eyebrow text-sov-mud mb-4">Principles</p>
+          <h2 className="heading-h2 mb-12">How we work</h2>
+          <div className="grid sm:grid-cols-2 gap-px bg-black/10">
             {[
-              { title: "Evidence over opinion", desc: "Every insight is grounded in structured data, cited sources, and transparent methodology." },
-              { title: "Institutional rigour", desc: "Research and briefings are built to the standard expected by DFIs, sovereign funds, and policymakers." },
-              { title: "Africa-led perspective", desc: "Analysis is anchored in African context — led by African researchers, for African decision-makers." },
-              { title: "Open where possible", desc: "Core intelligence is openly accessible. Premium data products serve institutional users who need depth." },
+              { num: "01", title: "Evidence over opinion", desc: "Every insight is grounded in structured data, cited sources, and transparent methodology." },
+              { num: "02", title: "Institutional rigour", desc: "Research and briefings are built to the standard expected by DFIs, sovereign funds, and policymakers." },
+              { num: "03", title: "Africa-led perspective", desc: "Analysis is anchored in African context — led by African researchers, for African decision-makers." },
+              { num: "04", title: "Open where possible", desc: "Core intelligence is openly accessible. Premium data products serve institutional users who need depth." },
             ].map((v) => (
-              <div key={v.title}>
-                <h3 className="font-medium mb-1">{v.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{v.desc}</p>
+              <div key={v.num} className="bg-sov-white-rock p-8 lg:p-10">
+                <span className="section-number block mb-4">{v.num}</span>
+                <h3 className="text-lg font-medium mb-2">{v.title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: "var(--sov-text-secondary)" }}>{v.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Team */}
-      <section className="container-wide py-14 lg:py-20">
-        <h2 className="text-xl font-semibold mb-8">Leadership</h2>
+      <section className="container-wide py-16 lg:py-24">
+        <p className="text-eyebrow text-sov-mud mb-4">Leadership</p>
+        <h2 className="heading-h2 mb-12">The team</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {[
             { name: "Dr. Amara Okafor", role: "Director of Research", prev: "Previously IFPRI, African Development Bank" },
@@ -78,25 +76,25 @@ export default function AboutPage() {
             { name: "Thabo Ndlovu", role: "Head of Convening", prev: "Previously AGRA, TechnoServe" },
           ].map((p) => (
             <div key={p.name}>
-              <div className="aspect-square rounded-lg bg-muted mb-3" />
-              <h3 className="font-medium text-[15px]">{p.name}</h3>
-              <p className="text-sm text-muted-foreground">{p.role}</p>
-              <p className="text-xs text-muted-foreground mt-0.5">{p.prev}</p>
+              <div className="aspect-square bg-sov-white-rock mb-4" />
+              <h3 className="font-medium text-sm">{p.name}</h3>
+              <p className="text-sm text-sov-mud">{p.role}</p>
+              <p className="text-xs mt-0.5" style={{ color: "var(--sov-text-secondary)" }}>{p.prev}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* CTA — left-aligned, not centered */}
-      <section className="border-t border-border bg-muted/40">
-        <div className="container-wide py-12 lg:py-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <section className="bg-sov-navy text-sov-white-rock py-16 lg:py-20">
+        <div className="container-wide flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div>
-            <h2 className="text-lg font-semibold mb-1">Work with us</h2>
-            <p className="text-sm text-muted-foreground">Interested in intelligence products, research collaboration, or partnerships?</p>
+            <p className="text-eyebrow text-sov-mud mb-3">Contact</p>
+            <h2 className="heading-h2 text-sov-white-rock mb-2">Work with us</h2>
+            <p className="text-sm text-sov-white-rock/50">Interested in intelligence products, research collaboration, or partnerships?</p>
           </div>
-          <Button asChild className="bg-brand-navy text-white h-9 px-5 text-sm flex-shrink-0">
-            <Link href="/contact">Get in touch</Link>
-          </Button>
+          <Link href="/contact" className="btn-pill-dark bg-sov-white-rock text-sov-navy hover:bg-sov-white-rock/90 flex-shrink-0">
+            Get in Touch
+          </Link>
         </div>
       </section>
     </div>

@@ -1,5 +1,6 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Input } from "@/components/ui/input"
+import { PageHero } from "@/components/page-hero"
 import Link from "next/link"
 import Image from "next/image"
 import { Search, Clock, Eye } from "lucide-react"
@@ -18,15 +19,12 @@ const stories = [
 
 export default function StoriesPage() {
   return (
-    <div className="min-h-screen bg-background">
-      <section className="border-b border-border bg-card">
-        <div className="container-wide py-12 lg:py-16">
-          <h1 className="text-3xl sm:text-4xl font-bold mb-3">Case Studies</h1>
-          <p className="text-muted-foreground max-w-lg">
-            How capital, policy, and operators collaborate to shift outcomes across African agriculture.
-          </p>
-        </div>
-      </section>
+    <div className="min-h-screen">
+      <PageHero
+        eyebrow="Evidence"
+        title="Case studies."
+        description="How capital, policy, and operators collaborate to shift outcomes across African agriculture."
+      />
 
       <div className="container-wide py-10 lg:py-16">
         <div className="relative max-w-sm mb-10">

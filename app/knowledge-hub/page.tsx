@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { PageHero } from "@/components/page-hero"
 import Link from "next/link"
 import { Search, FileText, Download } from "lucide-react"
 import type { Metadata } from "next"
@@ -25,15 +26,12 @@ const tierStyle: Record<string, string> = {
 
 export default function KnowledgeHubPage() {
   return (
-    <div className="min-h-screen bg-background">
-      <section className="border-b border-border bg-card">
-        <div className="container-wide py-12 lg:py-16">
-          <h1 className="text-3xl sm:text-4xl font-bold mb-3">Research</h1>
-          <p className="text-muted-foreground max-w-lg">
-            Publications, briefs, and toolkits at the intersection of capital, policy, and agricultural systems.
-          </p>
-        </div>
-      </section>
+    <div className="min-h-screen">
+      <PageHero
+        eyebrow="02 Research"
+        title="Publications and policy briefs."
+        description="Publications, briefs, and toolkits at the intersection of capital, policy, and agricultural systems."
+      />
 
       <div className="container-wide py-10 lg:py-16">
         {/* Search */}
