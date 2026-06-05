@@ -26,21 +26,21 @@ export default function ContactPage() {
           <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true) }} className="space-y-5 sm:space-y-6 w-full max-w-lg">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div className="space-y-2">
-                <label htmlFor="name" className="text-eyebrow text-clay">Full name</label>
+                <label htmlFor="name" className="text-eyebrow text-soil">Full name</label>
                 <input id="name" required autoComplete="name" className="field-input" />
               </div>
               <div className="space-y-2">
-                <label htmlFor="email" className="text-eyebrow text-clay">Email</label>
+                <label htmlFor="email" className="text-eyebrow text-soil">Email</label>
                 <input id="email" type="email" required autoComplete="email" className="field-input" />
               </div>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div className="space-y-2">
-                <label htmlFor="org" className="text-eyebrow text-clay">Organisation</label>
+                <label htmlFor="org" className="text-eyebrow text-soil">Organisation</label>
                 <input id="org" autoComplete="organization" className="field-input" />
               </div>
               <div className="space-y-2">
-                <label htmlFor="subject" className="text-eyebrow text-clay">Subject</label>
+                <label htmlFor="subject" className="text-eyebrow text-soil">Subject</label>
                 <select id="subject" className="field-input">
                   <option value="">Select</option>
                   <option value="early-access">Early access</option>
@@ -52,7 +52,7 @@ export default function ContactPage() {
               </div>
             </div>
             <div className="space-y-2">
-              <label htmlFor="message" className="text-eyebrow text-clay">Message</label>
+              <label htmlFor="message" className="text-eyebrow text-soil">Message</label>
               <textarea id="message" required rows={5} className="field-input resize-none min-h-[8rem]" />
             </div>
             <button type="submit" className="btn-pill-dark w-full sm:w-auto justify-center">
@@ -63,17 +63,17 @@ export default function ContactPage() {
 
         <aside className="text-sm space-y-5 sm:space-y-6 lg:pt-1 border-t border-soil/10 lg:border-0 pt-8 lg:pt-1">
           <div>
-            <p className="text-eyebrow text-clay mb-2">Email</p>
+            <p className="text-eyebrow text-soil mb-2">Email</p>
             <a href="mailto:info@agforumafrica.org" className="text-muted hover:text-sage transition-colors break-all">
               info@agforumafrica.org
             </a>
           </div>
           <div>
-            <p className="text-eyebrow text-clay mb-2">Location</p>
+            <p className="text-eyebrow text-soil mb-2">Location</p>
             <p className="text-muted">Nairobi, Kenya</p>
           </div>
           <div>
-            <p className="text-eyebrow text-clay mb-2">Response time</p>
+            <p className="text-eyebrow text-soil mb-2">Response time</p>
             <p className="text-muted">Within 2 business days</p>
           </div>
         </aside>

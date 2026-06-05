@@ -1,4 +1,3 @@
-import Link from "next/link"
 import Image from "next/image"
 import { PageHero } from "@/components/page-hero"
 import { GrainGradient } from "@/components/grain-gradient"
@@ -8,6 +7,12 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "About",
   description: "Agforum is building institutional intelligence infrastructure for African agriculture.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About | Agforum",
+    description: "Agforum is building institutional intelligence infrastructure for African agriculture.",
+    url: "/about",
+  },
 }
 
 const principles = [
@@ -26,7 +31,7 @@ export default function AboutPage() {
       />
 
       <section className="container-wide py-12 sm:py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-start">
-        <div className="max-w-xl order-last lg:order-none">
+        <div className="max-w-xl">
           <p className="text-eyebrow text-soil mb-5">Where we are</p>
           <div className="space-y-5 text-sm text-muted leading-relaxed">
             <p>
@@ -39,10 +44,10 @@ export default function AboutPage() {
             </p>
           </div>
         </div>
-        <div className="relative aspect-[4/3] sm:aspect-[5/4] lg:aspect-[4/3] overflow-hidden order-first lg:order-none">
+        <div className="relative aspect-[4/3] sm:aspect-[5/4] lg:aspect-[4/3] overflow-hidden">
           <Image
             src={agImages.farmerField}
-            alt="Farmer working in an agricultural field"
+            alt="Farmer working in a field of green crops"
             fill
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 50vw"
@@ -64,18 +69,6 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
-        </div>
-      </GrainGradient>
-
-      <GrainGradient variant="dark" className="py-14 lg:py-16">
-        <div className="container-wide flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-          <div>
-            <p className="text-eyebrow text-harvest/70 mb-2">Contact</p>
-            <p className="text-sm text-loam/50">Partnership or early access enquiries</p>
-          </div>
-          <Link href="/contact" className="btn-pill-white flex-shrink-0 w-full sm:w-auto justify-center">
-            Get in Touch
-          </Link>
         </div>
       </GrainGradient>
     </div>

@@ -1,37 +1,43 @@
 import Link from "next/link"
 import { GrainGradient } from "@/components/grain-gradient"
+import { FooterNewsletter } from "@/components/footer-newsletter"
 
 export function Footer() {
   return (
-    <GrainGradient variant="dark" className="border-t border-field/10">
+    <GrainGradient variant="earth" className="border-t border-soil/12">
       <div className="container-wide py-10 sm:py-14 lg:py-16 pb-[calc(1rem+env(safe-area-inset-bottom))]">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr,1fr,1.2fr] gap-10 lg:gap-12 items-start">
           <div>
-            <span className="font-mono text-sm tracking-tight text-loam block mb-3">
+            <span className="font-mono text-sm tracking-tight text-forest block mb-3">
               AG<span className="text-field">/</span>forum
             </span>
-            <p className="text-sm text-loam/45 leading-relaxed max-w-xs">
+            <p className="text-sm text-muted leading-relaxed max-w-xs">
               Institutional intelligence for African agriculture — from soil to markets.
             </p>
           </div>
 
-          <div className="md:text-right">
-            <p className="text-eyebrow text-harvest/60 mb-4">Connect</p>
-            <nav className="flex flex-wrap gap-x-5 gap-y-2 md:flex-col md:gap-2.5 text-sm text-loam/55 md:items-end">
-              <Link href="/about" className="hover:text-loam transition-colors">About</Link>
-              <Link href="/contact" className="hover:text-loam transition-colors">Contact</Link>
-              <a href="mailto:info@agforumafrica.org" className="hover:text-loam transition-colors">
+          <div>
+            <p className="text-eyebrow text-soil mb-4">Connect</p>
+            <nav className="flex flex-col gap-2.5 text-sm text-muted">
+              <Link href="/about" className="hover:text-forest transition-colors w-fit">About</Link>
+              <Link href="/contact" className="hover:text-forest transition-colors w-fit">Contact</Link>
+              <a href="mailto:info@agforumafrica.org" className="hover:text-forest transition-colors break-all">
                 info@agforumafrica.org
               </a>
             </nav>
           </div>
+
+          <div>
+            <p className="text-eyebrow text-soil mb-4">Updates</p>
+            <FooterNewsletter />
+          </div>
         </div>
       </div>
 
-      <div className="border-t border-field/10">
-        <div className="container-wide flex flex-col sm:flex-row justify-between gap-2 py-5 text-xs text-loam/30">
+      <div className="border-t border-soil/10">
+        <div className="container-wide flex flex-col sm:flex-row justify-between gap-2 py-5 text-xs text-soil/50">
           <p>&copy; {new Date().getFullYear()} Ag Forum Africa</p>
-          <p className="text-eyebrow text-harvest/50">Agrifood · In development</p>
+          <p className="text-eyebrow text-field/70">Agrifood · In development</p>
         </div>
       </div>
     </GrainGradient>

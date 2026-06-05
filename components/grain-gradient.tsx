@@ -3,7 +3,7 @@ import Image from "next/image"
 import { cn } from "@/lib/utils"
 
 interface GrainGradientProps {
-  variant?: "hero" | "soft" | "dark" | "field"
+  variant?: "hero" | "soft" | "dark" | "field" | "earth"
   image?: string
   imageAlt?: string
   className?: string

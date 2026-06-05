@@ -1,7 +1,27 @@
 import Link from "next/link"
 import Image from "next/image"
 import { GrainGradient } from "@/components/grain-gradient"
+import { NewsletterSignup } from "@/components/newsletter-signup"
 import { agImages } from "@/lib/ag-images"
+
+const audiences = [
+  "Ministries & regulators",
+  "DFIs & investors",
+  "Cooperatives & aggregators",
+  "Agribusiness operators",
+]
+
+const availableNow = [
+  { label: "Mission & approach", detail: "Who we serve and how we work", href: "/about" },
+  { label: "Early access enquiries", detail: "Partnership and pilot conversations", href: "/contact" },
+  { label: "Intelligence notes", detail: "Quarterly agrifood updates by email", href: "#updates" },
+]
+
+const comingLater = [
+  { title: "Research briefs", status: "Planned", desc: "Sourced analysis on value chains, trade, and climate." },
+  { title: "Forums & convening", status: "In development", desc: "Curated sessions for institutions shaping policy and capital." },
+  { title: "Intelligence tools", status: "Planned", desc: "Monitoring for markets, land use, and investment flows." },
+]
 
 const planned = [
   {
@@ -44,8 +64,13 @@ export default function HomePage() {
             for African agriculture.
           </h1>
 
-          <p className="text-base sm:text-lg text-loam/55 mt-6 sm:mt-8 max-w-lg leading-relaxed">
-            From soil to markets — evidence and convening for the institutions moving capital, policy, and production across the continent.
+          <p className="text-base sm:text-lg text-loam/55 mt-6 sm:mt-8 max-w-xl leading-relaxed">
+            Evidence, research, and convening for ministries, DFIs, cooperatives, and agrifood operators
+            — from soil to markets across the continent.
+          </p>
+
+          <p className="text-sm text-loam/40 mt-4 max-w-lg leading-relaxed">
+            Built in Nairobi. Nothing is publicly live yet — we&apos;re shaping the first capabilities with a small group of institutional partners.
           </p>
 
           <div className="btn-stack mt-8 sm:mt-10">
@@ -59,12 +84,69 @@ export default function HomePage() {
         </div>
       </GrainGradient>
 
+      <section className="border-b border-soil/10 bg-loam py-10 sm:py-14">
+        <div className="container-wide">
+          <p className="text-eyebrow text-soil mb-4">Who we serve</p>
+          <div className="flex flex-wrap gap-2 sm:gap-3">
+            {audiences.map((audience) => (
+              <span
+                key={audience}
+                className="text-xs sm:text-sm px-3 py-2 border border-field/20 text-muted bg-wheat/20"
+              >
+                {audience}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-14 sm:py-20 lg:py-24 border-b border-soil/10">
+        <div className="container-wide grid lg:grid-cols-2 gap-12 lg:gap-20">
+          <div>
+            <p className="text-eyebrow text-field mb-3">Available now</p>
+            <h2 className="heading-h2 text-xl sm:text-2xl mb-6">What you can engage with today</h2>
+            <ul className="space-y-4">
+              {availableNow.map((item) => (
+                <li key={item.label} className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 border-b border-soil/10 pb-4 last:border-0 last:pb-0">
+                  <div>
+                    <p className="text-sm text-forest font-medium">{item.label}</p>
+                    <p className="text-xs text-muted mt-0.5">{item.detail}</p>
+                  </div>
+                  <Link
+                    href={item.href}
+                    className="text-xs text-field hover:text-forest transition-colors shrink-0"
+                  >
+                    {item.href.startsWith("#") ? "Subscribe below" : "Learn more →"}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <p className="text-eyebrow text-soil mb-3">Coming later</p>
+            <h2 className="heading-h2 text-xl sm:text-2xl mb-6">Capabilities in development</h2>
+            <ul className="space-y-5">
+              {comingLater.map((item) => (
+                <li key={item.title} className="border-l-2 border-soil/15 pl-4">
+                  <div className="flex items-baseline justify-between gap-3 mb-1">
+                    <p className="text-sm text-forest">{item.title}</p>
+                    <span className="text-eyebrow text-soil/70 shrink-0">{item.status}</span>
+                  </div>
+                  <p className="text-xs text-muted leading-relaxed">{item.desc}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
       <GrainGradient variant="soft" className="py-14 sm:py-20 lg:py-32">
         <div className="container-wide">
           <p className="text-eyebrow text-soil mb-3 sm:mb-4">What we&apos;re building</p>
           <h2 className="heading-h2 mb-4 sm:mb-5 max-w-xl">Capabilities for the agrifood sector</h2>
           <p className="text-sm text-muted max-w-md mb-10 sm:mb-16 leading-relaxed">
-            Agforum is early. Nothing is live yet — we&apos;re building deliberately, from the field up.
+            Three pillars — convening, research, and intelligence — designed for institutions that need depth, not noise.
           </p>
 
           <div className="grid md:grid-cols-2 gap-px bg-soil/15">
@@ -132,18 +214,26 @@ export default function HomePage() {
         </div>
       </section>
 
-      <GrainGradient variant="dark" className="py-14 sm:py-20 lg:py-28">
-        <div className="container-wide text-center px-2">
-          <p className="text-eyebrow text-harvest/70 mb-4 sm:mb-6">Contact</p>
-          <h2 className="heading-h2 text-loam mb-4 sm:mb-5">Interested in early access?</h2>
-          <p className="text-sm text-loam/45 max-w-md mx-auto mb-8 sm:mb-10 leading-relaxed">
-            We&apos;re speaking with ministries, DFIs, and agrifood operators ahead of launch.
-          </p>
-          <Link href="/contact" className="btn-pill-white w-full sm:w-auto justify-center">
-            Get in Touch
-          </Link>
+      <section id="updates" className="scroll-mt-20">
+      <GrainGradient variant="earth" className="py-14 sm:py-20 lg:py-24">
+        <div className="container-wide grid lg:grid-cols-[1fr,1.1fr] gap-10 lg:gap-16 items-start">
+          <div>
+            <p className="text-eyebrow text-soil mb-3">Updates</p>
+            <h2 className="heading-h2 text-xl sm:text-2xl mb-4">Quarterly agrifood intelligence notes</h2>
+            <p className="text-sm text-muted leading-relaxed max-w-md">
+              Field-level context, policy signals, and sector developments — written for institutional readers. No product pitches.
+            </p>
+            <p className="text-sm text-muted mt-6">
+              Prefer a conversation?{" "}
+              <Link href="/contact" className="text-field hover:text-forest transition-colors">
+                Get in touch →
+              </Link>
+            </p>
+          </div>
+          <NewsletterSignup />
         </div>
       </GrainGradient>
+      </section>
     </div>
   )
 }
