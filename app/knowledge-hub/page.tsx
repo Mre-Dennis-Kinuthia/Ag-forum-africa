@@ -28,9 +28,9 @@ export default function KnowledgeHubPage() {
   return (
     <div className="min-h-screen">
       <PageHero
-        eyebrow="02 Research"
-        title="Publications and policy briefs."
-        description="Publications, briefs, and toolkits at the intersection of capital, policy, and agricultural systems."
+        eyebrow="Resources"
+        title="Guides and publications."
+        description="Technical guides, toolkits, and learning resources contributed by the community."
       />
 
       <div className="container-wide py-10 lg:py-16">

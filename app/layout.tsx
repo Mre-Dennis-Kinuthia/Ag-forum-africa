@@ -25,27 +25,33 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 })
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+}
+
 export const metadata: Metadata = {
   title: {
-    default: "Agforum — Intelligence for African Agriculture",
+    default: "Agforum — Institutional Intelligence for African Agriculture",
     template: "%s | Agforum",
   },
   description:
-    "Data, research, and convening for the institutions shaping Africa's agrifood future. Serving DFIs, sovereign funds, policymakers, and operators.",
+    "Institutional intelligence for the actors shaping Africa's agrifood future. Currently in development.",
   metadataBase: new URL("https://agforumafrica.org"),
   openGraph: {
     type: "website",
     locale: "en_US",
     siteName: "Agforum",
-    title: "Agforum — Intelligence for African Agriculture",
+    title: "Agforum — Institutional Intelligence for African Agriculture",
     description:
-      "Data, research, and convening for the institutions shaping Africa's agrifood future.",
+      "Institutional intelligence for the actors shaping Africa's agrifood future. Currently in development.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Agforum — Intelligence for African Agriculture",
+    title: "Agforum — Institutional Intelligence for African Agriculture",
     description:
-      "Data, research, and convening for the institutions shaping Africa's agrifood future.",
+      "Institutional intelligence for the actors shaping Africa's agrifood future. Currently in development.",
   },
 }
 

@@ -1,94 +1,82 @@
 "use client"
 
 import { useState } from "react"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { PageHero } from "@/components/page-hero"
 import { Mail } from "lucide-react"
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false)
 
   return (
-    <div>
-      <section className="bg-sov-off-white border-b border-black/5">
-        <div className="container-wide py-16 lg:py-24">
-          <p className="text-eyebrow text-sov-mud mb-6">Contact</p>
-          <h1 className="heading-h1 max-w-2xl">Get in touch.</h1>
-          <p className="mt-5 text-lg max-w-xl leading-relaxed" style={{ color: "var(--sov-text-secondary)" }}>
-            Whether you&apos;re an investor, policymaker, or operator — we want to hear from you.
-          </p>
-        </div>
-      </section>
+    <div className="overflow-x-hidden">
+      <PageHero
+        eyebrow="02 Contact"
+        title="Get in touch."
+        description="Early access for ministries, DFIs, cooperatives, and agrifood operators."
+      />
 
-      <div className="container-wide py-12 lg:py-20 grid lg:grid-cols-[1fr,320px] gap-12 lg:gap-20">
+      <div className="container-wide py-10 sm:py-14 lg:py-24 flex flex-col lg:grid lg:grid-cols-[1fr,280px] gap-10 lg:gap-20">
         {submitted ? (
-          <div className="py-16">
-            <Mail className="h-6 w-6 text-muted-foreground mb-4" />
-            <h2 className="text-xl font-semibold mb-2">Message received</h2>
-            <p className="text-sm text-muted-foreground">We'll respond within two business days.</p>
+          <div className="py-8 sm:py-12">
+            <Mail className="h-5 w-5 text-sage mb-5" />
+            <h2 className="heading-h2 text-xl mb-2">Message received</h2>
+            <p className="text-sm text-muted">We&apos;ll respond within two business days.</p>
           </div>
         ) : (
-          <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true) }} className="space-y-5 max-w-lg">
-            <div className="grid sm:grid-cols-2 gap-5">
-              <div className="space-y-1.5">
-                <Label htmlFor="name" className="text-sm">Full name</Label>
-                <Input id="name" required className="h-10" />
+          <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true) }} className="space-y-5 sm:space-y-6 w-full max-w-lg">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div className="space-y-2">
+                <label htmlFor="name" className="text-eyebrow text-clay">Full name</label>
+                <input id="name" required autoComplete="name" className="field-input" />
               </div>
-              <div className="space-y-1.5">
-                <Label htmlFor="email" className="text-sm">Email</Label>
-                <Input id="email" type="email" required className="h-10" />
-              </div>
-            </div>
-            <div className="grid sm:grid-cols-2 gap-5">
-              <div className="space-y-1.5">
-                <Label htmlFor="org" className="text-sm">Organisation</Label>
-                <Input id="org" className="h-10" />
-              </div>
-              <div className="space-y-1.5">
-                <Label htmlFor="subject" className="text-sm">Subject</Label>
-                <Select>
-                  <SelectTrigger className="h-10"><SelectValue placeholder="Select" /></SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="access">Institutional access</SelectItem>
-                    <SelectItem value="research">Research collaboration</SelectItem>
-                    <SelectItem value="partnership">Partnership</SelectItem>
-                    <SelectItem value="press">Press</SelectItem>
-                    <SelectItem value="general">General</SelectItem>
-                  </SelectContent>
-                </Select>
+              <div className="space-y-2">
+                <label htmlFor="email" className="text-eyebrow text-clay">Email</label>
+                <input id="email" type="email" required autoComplete="email" className="field-input" />
               </div>
             </div>
-            <div className="space-y-1.5">
-              <Label htmlFor="message" className="text-sm">Message</Label>
-              <Textarea id="message" required rows={5} className="resize-none" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div className="space-y-2">
+                <label htmlFor="org" className="text-eyebrow text-clay">Organisation</label>
+                <input id="org" autoComplete="organization" className="field-input" />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="subject" className="text-eyebrow text-clay">Subject</label>
+                <select id="subject" className="field-input">
+                  <option value="">Select</option>
+                  <option value="early-access">Early access</option>
+                  <option value="partnership">Partnership</option>
+                  <option value="research">Research collaboration</option>
+                  <option value="press">Press</option>
+                  <option value="general">General enquiry</option>
+                </select>
+              </div>
             </div>
-            <button type="submit" className="btn-pill-dark">
+            <div className="space-y-2">
+              <label htmlFor="message" className="text-eyebrow text-clay">Message</label>
+              <textarea id="message" required rows={5} className="field-input resize-none min-h-[8rem]" />
+            </div>
+            <button type="submit" className="btn-pill-dark w-full sm:w-auto justify-center">
               Send message
             </button>
           </form>
         )}
 
-        <div className="text-sm text-muted-foreground space-y-4 lg:pt-2">
+        <aside className="text-sm space-y-5 sm:space-y-6 lg:pt-1 border-t border-soil/10 lg:border-0 pt-8 lg:pt-1">
           <div>
-            <p className="font-medium text-foreground mb-0.5">Email</p>
-            <a href="mailto:info@agforumafrica.org" className="hover:text-foreground transition-colors">info@agforumafrica.org</a>
-          </div>
-          <div>
-            <p className="font-medium text-foreground mb-0.5">Location</p>
-            <p>Nairobi, Kenya</p>
+            <p className="text-eyebrow text-clay mb-2">Email</p>
+            <a href="mailto:info@agforumafrica.org" className="text-muted hover:text-sage transition-colors break-all">
+              info@agforumafrica.org
+            </a>
           </div>
           <div>
-            <p className="font-medium text-foreground mb-0.5">Response time</p>
-            <p>Within 2 business days</p>
+            <p className="text-eyebrow text-clay mb-2">Location</p>
+            <p className="text-muted">Nairobi, Kenya</p>
           </div>
-          <div className="pt-2 border-t border-border">
-            <p className="text-xs">
-              For institutional access or API inquiries, mention this in your message and we'll schedule an introductory call.
-            </p>
+          <div>
+            <p className="text-eyebrow text-clay mb-2">Response time</p>
+            <p className="text-muted">Within 2 business days</p>
           </div>
-        </div>
+        </aside>
       </div>
     </div>
   )
