@@ -4,10 +4,11 @@ import { useState } from "react"
 
 interface NewsletterSignupProps {
   variant?: "light" | "dark"
+  centered?: boolean
   className?: string
 }
 
-export function NewsletterSignup({ variant = "light", className = "" }: NewsletterSignupProps) {
+export function NewsletterSignup({ variant = "light", centered = false, className = "" }: NewsletterSignupProps) {
   const [email, setEmail] = useState("")
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
   const [message, setMessage] = useState("")
@@ -44,15 +45,18 @@ export function NewsletterSignup({ variant = "light", className = "" }: Newslett
 
   if (status === "success") {
     return (
-      <div className={className}>
+      <div className={`${centered ? "text-center" : ""} ${className}`}>
         <p className={`text-xs ${isDark ? "text-loam/60" : "text-muted"}`}>{message}</p>
       </div>
     )
   }
 
   return (
-    <form onSubmit={handleSubmit} className={`space-y-2 ${className}`}>
-      <div className={`newsletter-form ${isDark ? "newsletter-form--dark" : ""}`}>
+    <form
+      onSubmit={handleSubmit}
+      className={`space-y-2 ${centered ? "flex flex-col items-center text-center" : ""} ${className}`}
+    >
+      <div className={`newsletter-form ${isDark ? "newsletter-form--dark" : ""} ${centered ? "mx-auto" : ""}`}>
         <input
           type="email"
           name="email"

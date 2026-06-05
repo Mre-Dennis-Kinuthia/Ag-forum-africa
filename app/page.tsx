@@ -233,21 +233,19 @@ export default function HomePage() {
 
       <section id="updates" className="scroll-mt-20">
       <GrainGradient variant="earth" className="py-14 sm:py-20 lg:py-24">
-        <div className="container-wide grid lg:grid-cols-[1fr,1.1fr] gap-10 lg:gap-16 items-start">
-          <div>
-            <p className="text-eyebrow text-soil mb-3">Updates</p>
-            <h2 className="heading-h2 text-xl sm:text-2xl mb-4">Quarterly agrifood intelligence notes</h2>
-            <p className="text-sm text-muted leading-relaxed max-w-md">
-              Field-level context, policy signals, and sector developments — written for institutional readers. No product pitches.
-            </p>
-            <p className="text-sm text-muted mt-6">
-              Prefer a conversation?{" "}
-              <Link href="/contact" className="text-field hover:text-forest transition-colors">
-                Get in touch →
-              </Link>
-            </p>
-          </div>
-          <NewsletterSignup />
+        <div className="container-wide max-w-lg mx-auto text-center">
+          <p className="text-eyebrow text-soil mb-3">Updates</p>
+          <h2 className="heading-h2 text-xl sm:text-2xl mb-4">Quarterly agrifood intelligence notes</h2>
+          <p className="text-sm text-muted leading-relaxed">
+            Field-level context, policy signals, and sector developments — written for institutional readers. No product pitches.
+          </p>
+          <NewsletterSignup centered className="mt-8" />
+          <p className="text-sm text-muted mt-6">
+            Prefer a conversation?{" "}
+            <Link href="/contact" className="text-field hover:text-forest transition-colors">
+              Get in touch →
+            </Link>
+          </p>
         </div>
       </GrainGradient>
       </section>
